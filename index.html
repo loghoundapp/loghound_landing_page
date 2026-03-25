@@ -36,11 +36,13 @@
     </script>
     <style>
         .fade-in {
-            opacity: 0;
-            transform: translateY(24px);
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
-        .fade-in.visible {
+        .js-ready .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        .js-ready .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -395,6 +397,9 @@
     </footer>
 
     <script>
+        // Enable animations only when JS is confirmed running
+        document.documentElement.classList.add('js-ready');
+
         // Fade-in on scroll via IntersectionObserver
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
