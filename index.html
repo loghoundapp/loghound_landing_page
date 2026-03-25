@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogHound — Track Anything. Your Way.</title>
+    <meta name="description" content="Create custom tracking logs with the fields you need. No templates, no limitations — just your data, organized your way.">
+    <meta name="keywords" content="iOS, tracking app, custom logs, habit tracker, fitness log, journal, SwiftUI">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="LogHound — Track Anything. Your Way.">
+    <meta property="og:description" content="Create custom tracking logs with the fields you need. No templates, no limitations — just your data, organized your way.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://loghound.app">
+    <meta property="og:image" content="https://loghound.app/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LogHound — Track Anything. Your Way.">
+    <meta name="twitter:description" content="Create custom tracking logs with the fields you need. No templates, no limitations.">
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230d9488'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white'>🐾</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2.5">
+                    <img src="assets/AppIcon.png" alt="LogHound" class="w-8 h-8 rounded-lg">
+                    <span class="text-lg font-bold tracking-tight">LogHound</span>
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#features" class="text-sm text-slate-400 hover:text-white transition-colors">Features</a>
+                    <a href="#use-cases" class="text-sm text-slate-400 hover:text-white transition-colors">Use Cases</a>
+                    <a href="#pricing" class="text-sm text-slate-400 hover:text-white transition-colors">Pricing</a>
+                    <a href="#help" class="text-sm text-slate-400 hover:text-white transition-colors">Help</a>
+                    <a href="#" class="inline-flex items-center gap-2 bg-white text-slate-900 text-sm font-semibold px-4 py-2 rounded-full hover:bg-slate-100 transition-colors">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        App Store
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-400 hover:text-white" aria-label="Open menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-slate-900/95 backdrop-blur-lg">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#features" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Features</a>
+                <a href="#use-cases" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Use Cases</a>
+                <a href="#pricing" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Pricing</a>
+                <a href="#help" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Help</a>
+                <a href="#" class="inline-flex items-center gap-2 bg-white text-slate-900 text-sm font-semibold px-4 py-2 rounded-full hover:bg-slate-100 transition-colors mt-2">
+                    App Store
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="fade-in">
+                <!-- App Icon -->
+                <img src="assets/AppIcon.png" alt="LogHound app icon" class="mx-auto w-24 h-24 sm:w-28 sm:h-28 rounded-[28%] shadow-2xl shadow-teal-500/20 mb-8">
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+                    Log<span class="text-teal-400">Hound</span>
+                </h1>
+                <p class="text-2xl sm:text-3xl font-semibold text-slate-200 mb-4">Track anything. Your way.</p>
+                <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Create custom tracking logs with the fields you need. No templates, no limitations — just your data, organized your way.
+                </p>
+
+                <!-- App Store Button -->
+                <a href="#" class="inline-flex items-center gap-3 bg-white text-slate-900 font-semibold px-7 py-3.5 rounded-full hover:bg-slate-100 transition-colors text-base shadow-lg shadow-white/10">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on the App Store
+                </a>
+            </div>
+
+            <!-- Device Mockup -->
+            <div class="fade-in mt-16 mx-auto max-w-xs">
+                <div class="bg-slate-800/60 border border-slate-700/50 rounded-[2.5rem] p-3 shadow-2xl shadow-teal-900/20">
+                    <img src="assets/screenshots/02-running-cards.jpg" alt="LogHound card view showing a running log entry with distance, route, rating, and notes" class="rounded-[2rem] w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem / Solution -->
+    <section class="py-20 px-4">
+        <div class="max-w-3xl mx-auto text-center fade-in">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6">Tracking apps shouldn't force you into a box.</h2>
+            <p class="text-slate-400 text-lg leading-relaxed mb-6">
+                Most tracking apps give you rigid templates that almost fit. They're missing the one field you need, or packed with ten you don't. They try to be everything for everyone and end up being just okay for anyone.
+            </p>
+            <p class="text-slate-300 text-lg leading-relaxed font-medium">
+                LogHound lets you define the schema. You choose the fields, the app does the rest.
+            </p>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section id="features" class="py-20 px-4 scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Everything you need. Nothing you don't.</h2>
+                <p class="text-slate-400 text-lg">Powerful features that stay out of your way.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Custom Fields -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors">
+                    <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Custom Fields</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">8 field types to build any log: text, number, toggle, single/multi select, date/time, rating, and location.</p>
+                </div>
+
+                <!-- Multiple Views -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors">
+                    <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 0v1.5c0 .621-.504 1.125-1.125 1.125"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Multiple Views</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">See your data your way with card, table, and summary views. Aggregations like sum, average, and count built in.</p>
+                </div>
+
+                <!-- Alerts & Reminders -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors">
+                    <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Alerts & Reminders</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Set notifications on date/time fields with configurable repeat intervals. Never miss a tracking window.</p>
+                </div>
+
+                <!-- Search & Filters -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors">
+                    <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Search & Filters</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Full-text search across all logs plus reusable per-log filters with rich operators for every field type.</p>
+                </div>
+
+                <!-- Export & Backup -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors">
+                    <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Export & Backup</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">CSV export per log for spreadsheets. Full .loghound backup and restore to keep your data safe across devices.</p>
+                </div>
+
+                <!-- Privacy First -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors">
+                    <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Privacy First</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">All data stays on your device. No cloud sync, no accounts, no analytics. Your logs are yours alone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases" class="py-20 px-4 scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Built for the way you track.</h2>
+                <p class="text-slate-400 text-lg">Whatever you need to log, LogHound adapts.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Fitness">&#x1F3CB;&#xFE0F;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Fitness Tracking</h3>
+                        <p class="text-slate-400 text-sm">Log workouts, sets, reps, and personal records.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Medication">&#x1F48A;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Medication Log</h3>
+                        <p class="text-slate-400 text-sm">Track doses with date/time alerts for reminders.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Car">&#x1F697;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Car Maintenance</h3>
+                        <p class="text-slate-400 text-sm">Record oil changes, tire rotations, and repairs.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Habits">&#x2705;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Habit Streaks</h3>
+                        <p class="text-slate-400 text-sm">Toggle daily habits and see streaks in summary view.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Health">&#x1FA7A;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Symptom Diary</h3>
+                        <p class="text-slate-400 text-sm">Track symptoms with severity ratings and notes.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Books">&#x1F4DA;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Reading Log</h3>
+                        <p class="text-slate-400 text-sm">Record books with ratings, dates, and genre tags.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Up and running in minutes.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+                <div class="fade-in text-center">
+                    <div class="w-14 h-14 bg-teal-500/15 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <span class="text-teal-400 font-bold text-xl">1</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Create a Log</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Name it and start building your schema.</p>
+                </div>
+                <div class="fade-in text-center">
+                    <div class="w-14 h-14 bg-teal-500/15 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <span class="text-teal-400 font-bold text-xl">2</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Add Fields</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Choose from 8 field types to match what you're tracking.</p>
+                </div>
+                <div class="fade-in text-center">
+                    <div class="w-14 h-14 bg-teal-500/15 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                        <span class="text-teal-400 font-bold text-xl">3</span>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Start Tracking</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Record entries, view data, set alerts, and export anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-4 scroll-mt-20">
+        <div class="max-w-3xl mx-auto text-center fade-in">
+            <div class="bg-slate-800/40 border border-slate-700/40 rounded-2xl p-10 sm:p-14">
+                <div class="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/20 rounded-full px-4 py-1.5 mb-6">
+                    <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="text-teal-400 text-sm font-medium">No subscription</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Simple pricing.</h2>
+                <p class="text-xl text-slate-300 leading-relaxed">
+                    30-day free trial. Then a one-time purchase — no subscription, ever.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help -->
+    <section id="help" class="py-20 px-4 scroll-mt-20">
+        <div class="max-w-3xl mx-auto text-center fade-in">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Need help getting started?</h2>
+            <p class="text-slate-400 text-lg mb-10">Browse common questions or visit the full help center.</p>
+
+            <div class="space-y-3 max-w-lg mx-auto mb-10">
+                <a href="help.html" class="flex items-center justify-between bg-slate-800/40 border border-slate-700/40 rounded-xl px-5 py-4 hover:border-teal-500/30 transition-colors group">
+                    <span class="text-slate-300 text-sm">How do I create my first log?</span>
+                    <svg class="w-4 h-4 text-slate-500 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                </a>
+                <a href="help.html" class="flex items-center justify-between bg-slate-800/40 border border-slate-700/40 rounded-xl px-5 py-4 hover:border-teal-500/30 transition-colors group">
+                    <span class="text-slate-300 text-sm">What field type should I use?</span>
+                    <svg class="w-4 h-4 text-slate-500 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                </a>
+                <a href="help.html" class="flex items-center justify-between bg-slate-800/40 border border-slate-700/40 rounded-xl px-5 py-4 hover:border-teal-500/30 transition-colors group">
+                    <span class="text-slate-300 text-sm">How do I export my data?</span>
+                    <svg class="w-4 h-4 text-slate-500 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                </a>
+            </div>
+
+            <a href="help.html" class="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-slate-900 font-semibold px-6 py-3 rounded-full transition-colors">
+                Visit the Help Center
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 bg-teal-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-semibold">LogHound</span>
+                </div>
+
+                <div class="flex items-center gap-6 text-sm text-slate-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="help.html" class="hover:text-white transition-colors">Help Center</a>
+                    <a href="mailto:support@loghound.app" class="hover:text-white transition-colors">Support</a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-white/5 text-center">
+                <p class="text-slate-500 text-sm mb-2">Built with &#10084;&#65039; for people who track things.</p>
+                <p class="text-slate-600 text-xs">&copy; 2026 LogHound. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fade-in on scroll via IntersectionObserver
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+    </script>
+</body>
+</html>

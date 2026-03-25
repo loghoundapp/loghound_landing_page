@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogHound Help Center</title>
+    <meta name="description" content="Help center for LogHound — the iOS app for creating custom tracking logs. Find answers to common questions, learn about features, and troubleshoot issues.">
+    <meta name="keywords" content="LogHound, help, support, iOS, tracking, logs, custom logs">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="LogHound Help Center">
+    <meta property="og:description" content="Find answers, learn features, and troubleshoot issues with LogHound — your custom tracking log app for iOS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://loghound.com/help.html">
+    <meta property="og:site_name" content="LogHound">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LogHound Help Center">
+    <meta name="twitter:description" content="Find answers, learn features, and troubleshoot issues with LogHound.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+            opacity: 0;
+        }
+        .accordion-content.open {
+            opacity: 1;
+            transition: max-height 0.4s ease-in, opacity 0.3s ease-in;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-trigger[aria-expanded="true"] .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .section-hidden {
+            display: none;
+        }
+        .sidebar-link.active {
+            color: #0d9488;
+            background-color: #f0fdfa;
+            border-left-color: #0d9488;
+        }
+    </style>
+</head>
+<body class="bg-zinc-50 font-sans text-zinc-800 antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white border-b border-zinc-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 text-zinc-900 hover:text-accent-600 transition-colors">
+                    <svg class="w-7 h-7 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <span class="text-lg font-semibold tracking-tight">LogHound</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a href="index.html" class="text-zinc-500 hover:text-zinc-900 transition-colors">Home</a>
+                    <a href="help.html" class="text-accent-600 border-b-2 border-accent-500 pb-0.5">Help</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 transition-colors" aria-label="Open menu">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-zinc-200 bg-white">
+            <nav class="px-4 py-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-lg text-sm text-zinc-600 hover:bg-zinc-50">Home</a>
+                <a href="help.html" class="block px-3 py-2 rounded-lg text-sm text-accent-600 bg-accent-50 font-medium">Help</a>
+            </nav>
+            <div id="mobile-sidebar" class="px-4 pb-4 border-t border-zinc-100 pt-3">
+                <p class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2 px-3">Topics</p>
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+        <div class="lg:flex lg:gap-10">
+
+            <!-- Sidebar (Desktop) -->
+            <aside class="hidden lg:block lg:w-64 flex-shrink-0">
+                <div class="sticky top-24">
+                    <!-- Search -->
+                    <div class="mb-6">
+                        <div class="relative">
+                            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input id="search-desktop" type="text" placeholder="Search help..." class="w-full pl-10 pr-4 py-2.5 text-sm border border-zinc-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent placeholder-zinc-400">
+                        </div>
+                        <p id="search-status-desktop" class="text-xs text-zinc-400 mt-1.5 px-1 hidden"></p>
+                    </div>
+                    <nav id="sidebar-nav" class="space-y-0.5">
+                        <!-- Populated by JS -->
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 min-w-0">
+                <!-- Mobile Search -->
+                <div class="lg:hidden mb-6">
+                    <div class="relative">
+                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input id="search-mobile" type="text" placeholder="Search help..." class="w-full pl-10 pr-4 py-2.5 text-sm border border-zinc-200 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent placeholder-zinc-400">
+                    </div>
+                    <p id="search-status-mobile" class="text-xs text-zinc-400 mt-1.5 px-1 hidden"></p>
+                </div>
+
+                <h1 class="text-3xl font-bold text-zinc-900 mb-2">Help Center</h1>
+                <p class="text-zinc-500 mb-6">Everything you need to know about using LogHound.</p>
+
+                <!-- AI Help Banner -->
+                <div class="mb-8 rounded-xl border border-accent-200 bg-accent-50 overflow-hidden">
+                    <button id="ai-help-toggle" class="w-full flex items-center justify-between px-5 py-4 text-left" aria-expanded="false">
+                        <div class="flex items-center gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-accent-600 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-accent-900">Get help from AI</p>
+                                <p class="text-xs text-accent-700">Use ChatGPT, Gemini, or Claude for personalized answers</p>
+                            </div>
+                        </div>
+                        <svg id="ai-help-chevron" class="w-4 h-4 text-accent-600 transition-transform duration-300 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="ai-help-body" class="hidden px-5 pb-5">
+                        <p class="text-sm text-accent-800 mb-4 leading-relaxed">
+                            Paste the prompt below into <strong>ChatGPT</strong>, <strong>Gemini</strong>, or <strong>Claude</strong> to get an AI assistant that knows LogHound inside and out — ready to answer your specific questions.
+                        </p>
+                        <div class="relative">
+                            <pre id="ai-prompt-text" class="text-xs text-accent-900 bg-white border border-accent-200 rounded-lg p-4 pr-12 whitespace-pre-wrap leading-relaxed font-mono select-all">Please load the LogHound app documentation from the following URL and use it as context to answer my questions about the app:
+
+https://loghound.app/llm-reference.txt
+
+Once you've read it, act as a helpful LogHound support assistant. I may ask questions about how to use the app, what features are available, how to set up logs and fields, how alerts work, how to export data, or anything else related to LogHound. Please give clear, friendly answers based on that documentation.</pre>
+                            <button id="copy-prompt-btn" onclick="copyAiPrompt()" class="absolute top-3 right-3 p-1.5 rounded-md bg-accent-100 hover:bg-accent-200 text-accent-700 transition-colors" title="Copy to clipboard">
+                                <svg id="copy-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                                <svg id="check-icon" class="w-4 h-4 hidden text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Getting Started -->
+                <section id="getting-started" class="help-section mb-8" data-section-title="Getting Started">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#getting-started" class="hover:text-accent-600 transition-colors">Getting Started</a>
+                    </h2>
+                    <div class="mb-4">
+                        <img src="assets/screenshots/01-log-list.jpg" alt="LogHound log list showing four example logs with entry counts" class="rounded-xl border border-zinc-200 shadow-sm max-w-[220px]">
+                    </div>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>First launch</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>When you open LogHound for the first time, you'll see a welcome screen. You can create your first log right away by tapping <strong>Create Your First Log</strong>, or skip to explore the app first.</p>
+                                    <p class="mt-2">Sample data is pre-populated so you can see how logs, fields, and entries work before creating your own. Feel free to edit or delete the sample data at any time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>The home screen</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>The home screen shows your log list with a search bar at the top. Each log displays its name and entry count.</p>
+                                    <p class="mt-2">Along the bottom toolbar you'll find:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li><strong>+ button</strong> &mdash; Create a new log</li>
+                                        <li><strong>Archive</strong> &mdash; View archived logs</li>
+                                        <li><strong>Trash</strong> &mdash; View deleted logs (30-day retention)</li>
+                                    </ul>
+                                    <p class="mt-2">In the top-right area you'll see a <strong>Settings gear</strong> icon and an <strong>Alerts bell</strong> icon for managing notifications.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Navigating the app</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap any log to open its detail view where you can see all entries. Use <strong>All Logs</strong> (back button) to return to the log list.</p>
+                                    <p class="mt-2">Inside a log, you can switch between three view modes:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li><strong>Card</strong> &mdash; Vertical cards showing field values</li>
+                                        <li><strong>Table</strong> &mdash; Spreadsheet-style rows and columns</li>
+                                        <li><strong>Summary</strong> &mdash; Aggregated statistics for numeric fields</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Logs -->
+                <section id="logs" class="help-section mb-8" data-section-title="Logs">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#logs" class="hover:text-accent-600 transition-colors">Logs</a>
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Creating a log</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap the <strong>+</strong> button on the home screen to create a new log. Enter a name and tap <strong>Save</strong>.</p>
+                                    <p class="mt-2">The schema editor opens automatically so you can start adding fields right away. Fields define what data each entry will capture.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Renaming a log</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Long-press a log on the home screen and select <strong>Rename</strong>. Edit the name and confirm. Duplicate names are not allowed.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Duplicating a log</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Long-press a log and select <strong>Duplicate</strong>. You'll be prompted to name the copy and can toggle <strong>Include all entries</strong> on or off.</p>
+                                    <p class="mt-2">If toggled on, all existing entries are copied to the new log. If off, only the schema (fields) is duplicated.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Archiving vs. deleting</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p><strong>Archiving</strong> preserves a log and removes it from the home screen. You can access archived logs from the <strong>Archive</strong> view and restore them anytime.</p>
+                                    <p class="mt-2"><strong>Deleting</strong> moves a log to Trash where it stays for 30 days before permanent deletion. Both actions are fully reversible within their retention periods.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Restoring a log</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Open the <strong>Archive</strong> or <strong>Trash</strong> view and tap the restore action on the log you want to bring back.</p>
+                                    <p class="mt-2">If an active log already has the same name, you'll be prompted to rename it before restoring.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Reordering logs</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>On the home screen, drag logs up or down to rearrange them in your preferred order. The order is saved automatically.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fields & Schema -->
+                <section id="fields-schema" class="help-section mb-8" data-section-title="Fields &amp; Schema">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#fields-schema" class="hover:text-accent-600 transition-colors">Fields &amp; Schema</a>
+                    </h2>
+                    <div class="mb-4">
+                        <img src="assets/screenshots/05-running-schema.jpg" alt="Schema editor showing six fields: Distance, Duration, Route, How I Felt, Weather, and Notes with their field types" class="rounded-xl border border-zinc-200 shadow-sm max-w-[220px]">
+                    </div>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Adding a field</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>In the schema editor, tap <strong>Add Field</strong>. Select a field type, configure its settings (name, options, etc.), and tap <strong>Save</strong>.</p>
+                                    <p class="mt-2">Each field defines a piece of data captured in every entry. You can add as many fields as you need.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Field types explained</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <div class="space-y-4">
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Text</p>
+                                            <p>Free-form text input. Use for notes, descriptions, names, or any open-ended data.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Number</p>
+                                            <p>Numeric input with optional decimal places. You can set minimum and maximum values to constrain input.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Toggle</p>
+                                            <p>A simple Yes/No switch. Great for habit tracking, checklists, or any binary data.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Single Select</p>
+                                            <p>Pick one option from a list you define. Useful for categories, statuses, or any fixed set of choices.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Multi Select</p>
+                                            <p>Pick multiple options from a list. Good for tagging entries with several attributes at once.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Date/Time</p>
+                                            <p>A date picker, time picker, or both. This is the only field type that supports alerts and reminders.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Star Rating</p>
+                                            <p>A 1&ndash;5 scale with a customizable emoji. Rate meals, mood, workouts, or anything on a quick scale.</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-zinc-700">Location</p>
+                                            <p>Captures your GPS coordinates (latitude and longitude). Optionally includes altitude and accuracy data.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Editing fields</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap a field in the schema editor to edit its name and configuration. Changes apply to all future entries.</p>
+                                    <p class="mt-2">If existing entries already have data for this field, a warning is shown to let you know how the change might affect your data.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Reordering fields</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Use the drag handles in the schema editor to reorder fields. The field order determines how they appear in entry forms and views.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Deleting a field</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Swipe left on a field in the schema editor to delete it. A confirmation dialog shows how many entries have data in this field so you understand the impact before confirming.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Field configuration options</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Every field type shares these common options:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li><strong>Required</strong> &mdash; The field must be filled before an entry can be saved</li>
+                                        <li><strong>Clonable</strong> &mdash; When duplicating an entry, this field's value auto-fills in the copy</li>
+                                        <li><strong>Default value</strong> &mdash; Pre-fills the field when creating a new entry</li>
+                                    </ul>
+                                    <p class="mt-3">Type-specific options include:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li><strong>Number</strong> &mdash; Min/max values, decimal places</li>
+                                        <li><strong>Single/Multi Select</strong> &mdash; Manage the list of selectable options</li>
+                                        <li><strong>Star Rating</strong> &mdash; Custom emoji and maximum rating value</li>
+                                        <li><strong>Date/Time</strong> &mdash; Picker mode (date only, time only, or both)</li>
+                                        <li><strong>Location</strong> &mdash; Toggle altitude and accuracy capture</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Entries -->
+                <section id="entries" class="help-section mb-8" data-section-title="Entries">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#entries" class="hover:text-accent-600 transition-colors">Entries</a>
+                    </h2>
+                    <div class="mb-4">
+                        <img src="assets/screenshots/06-entry-form.jpg" alt="Entry form showing timestamp, filled-in distance and duration fields, a route selection, and star rating" class="rounded-xl border border-zinc-200 shadow-sm max-w-[220px]">
+                    </div>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Creating an entry</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap the <strong>+</strong> floating action button in the log detail view. The timestamp is set automatically to the current date and time but can be edited.</p>
+                                    <p class="mt-2">Fill in your fields and tap <strong>Save</strong>. Required fields must be completed before saving.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Editing an entry</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap an entry to view its details, then tap the <strong>Edit</strong> button. Modify any fields and save your changes.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Duplicating an entry</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap an entry and select <strong>Duplicate</strong>. Fields marked as <strong>Clonable</strong> in the schema are pre-filled with the original values; other fields start empty.</p>
+                                    <p class="mt-2">You can edit the duplicated entry before saving it.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Deleting entries</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Delete individual entries via edit mode or the context menu. To delete all entries in a log at once, use the <strong>"..."</strong> menu in the log detail view and select <strong>Delete All Entries</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Drafts</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>If you dismiss the entry form without saving, your in-progress data is automatically saved as a draft. When you return to create a new entry in the same log, the draft is restored so you can pick up where you left off.</p>
+                                    <p class="mt-2">Drafts are cleared once you save the entry.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Viewing Data -->
+                <section id="viewing-data" class="help-section mb-8" data-section-title="Viewing Data">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#viewing-data" class="hover:text-accent-600 transition-colors">Viewing Data</a>
+                    </h2>
+                    <div class="flex gap-3 mb-4 overflow-x-auto pb-1">
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/02-running-cards.jpg" alt="Card view showing running entries with distance, route, emoji rating, and notes" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Card view</p>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/03-running-table.jpg" alt="Table view showing running entries as rows with sortable columns" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Table view</p>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/12-summary-sum-week.jpg" alt="Summary view showing weekly totals of distance and duration" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Summary — Sum/Week</p>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/13-summary-avg-week.jpg" alt="Summary view showing weekly averages of distance and duration" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Summary — Average/Week</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Card view</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Card view displays entries as vertical cards, newest first. Each card shows the timestamp and field values, along with <strong>Edit</strong>, <strong>Duplicate</strong>, and <strong>Delete</strong> buttons.</p>
+                                    <p class="mt-2">You can toggle which fields are displayed on the cards to focus on the data that matters most.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Table view</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Table view shows entries as rows with fields as columns. Click column headers to sort by that field. Drag column borders to resize.</p>
+                                    <p class="mt-2">Tap a row to see full entry details. Right-click (or long-press) a row for <strong>Edit</strong>, <strong>Duplicate</strong>, and <strong>Delete</strong> options.</p>
+                                    <p class="mt-2">Numeric precision (decimal places displayed) is configurable in <strong>Settings</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Summary view</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Summary view aggregates your numeric data over time. Only <strong>Number</strong>, <strong>Star Rating</strong>, and <strong>Toggle</strong> fields appear as columns — text, select, and location fields are excluded since they can't be meaningfully aggregated.</p>
+                                    <p class="mt-2">Use the two pickers at the top to control what you see:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li><strong>Interval</strong> (Day / Week / Month / Year) &mdash; groups entries into time buckets. "Week of Mar 15" shows all entries recorded that week.</li>
+                                        <li><strong>Statistic</strong> (Sum / Average / Count) &mdash; determines how values within each bucket are combined. Sum adds them up; Average divides by the number of entries; Count just shows how many entries there were regardless of field values.</li>
+                                    </ul>
+                                    <p class="mt-2">For example, a running log on <strong>Sum + Week</strong> shows total distance run each week (15.2 miles). Switch to <strong>Average + Week</strong> and the same data shows average distance per run (5.1 miles). Same entries, completely different insight.</p>
+                                    <p class="mt-2">Tap any column header to sort by that value. Use the <strong>Fields</strong> button to show or hide individual columns.</p>
+                                    <p class="mt-2 text-zinc-500">The week start day (Sunday or Monday) is configurable in <strong>Settings</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Search & Filters -->
+                <section id="search-filters" class="help-section mb-8" data-section-title="Search &amp; Filters">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#search-filters" class="hover:text-accent-600 transition-colors">Search &amp; Filters</a>
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Searching entries</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Use the search bar in the log list to find entries across all logs. Search uses fuzzy matching against log names and entry field content.</p>
+                                    <p class="mt-2">Results display the log name, entry timestamp, and highlighted matches. Tap a result to navigate directly to that entry.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Creating filters</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap the <strong>Filter</strong> button in any view mode to open the filter panel. Filters are shown as expandable cards, one per field.</p>
+                                    <p class="mt-2">Each field type offers relevant operators: equals, contains, between, is set, and more. Filters are per-log and reusable across sessions.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Applying and removing filters</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Toggle individual filters on or off. When filters are active, the view shows a count indicator (e.g., "5 of 12 entries") so you know how many entries match.</p>
+                                    <p class="mt-2">Use <strong>Clear All</strong> to remove all active filters at once.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Alerts & Reminders -->
+                <section id="alerts-reminders" class="help-section mb-8" data-section-title="Alerts &amp; Reminders">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#alerts-reminders" class="hover:text-accent-600 transition-colors">Alerts &amp; Reminders</a>
+                    </h2>
+
+                    <!-- Intro callout -->
+                    <div class="bg-accent-50 border border-accent-200 rounded-lg px-5 py-4 mb-4 text-sm text-accent-800">
+                        <p><strong>How alerts work:</strong> Alerts are tied to a specific date and time stored in a <strong>Date/Time field</strong>. When that moment arrives, iOS sends you a notification. Tap the notification to open the entry directly. Alerts are configured per-entry — the same field in different entries can have different alert settings.</p>
+                    </div>
+
+                    <div class="flex gap-3 mb-4 overflow-x-auto pb-1">
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/08-entry-form-alert-set.jpg" alt="Entry form showing a Date/Time field with a red bell icon indicating an active alert and an Edit alerts link" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Active alert on a field</p>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/09-alert-config-1.jpg" alt="Alert configuration sheet showing Enable Alert toggle and a single scheduled time in the preview" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Alert config (1 alert)</p>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/10-alert-config-repeat.jpg" alt="Alert configuration with 2 alerts selected, showing the Repeating section with Minutes/Hours/Days picker and two scheduled times in the preview" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Multiple alerts with repeat</p>
+                        </div>
+                        <div class="flex-shrink-0 text-center">
+                            <img src="assets/screenshots/11-alerts-list.jpg" alt="Active Alerts view showing an alert card with log name, field, scheduled date, and time filter tabs" class="rounded-xl border border-zinc-200 shadow-sm max-w-[160px]">
+                            <p class="text-xs text-zinc-400 mt-1.5">Alerts list</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Step 1 — Add a Date/Time field to your log</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Alerts are only available on <strong>Date/Time</strong> fields. If your log doesn't already have one, open the schema editor ("..." menu &rarr; <strong>Edit Fields</strong>) and add a Date/Time field — for example, "Next appointment", "Due date", or "Next Recital".</p>
+                                    <p class="mt-2">Choose the picker mode that fits: <strong>Date only</strong>, <strong>Time only</strong>, or <strong>Date &amp; Time</strong>. For alerts, you'll want <strong>Date &amp; Time</strong> so the notification fires at a precise moment.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Step 2 — Set the date and configure the alert</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>When creating or editing an entry, set your Date/Time field to a future date and time. Then tap <strong>Edit alerts</strong> (or the bell icon) next to the field.</p>
+                                    <p class="mt-2">In the alert sheet:</p>
+                                    <ol class="list-decimal ml-5 mt-1 space-y-1">
+                                        <li>Toggle <strong>Enable Alert</strong> on</li>
+                                        <li>Choose <strong>Number of Alerts</strong>: 1, 2, 3, or 4</li>
+                                        <li>If more than 1, set the <strong>Repeat interval</strong>: every N minutes (1–59), hours (1–23), or days (1)</li>
+                                        <li>Check the <strong>Preview</strong> to confirm all scheduled times are correct</li>
+                                        <li>Tap <strong>Save</strong></li>
+                                    </ol>
+                                    <p class="mt-2">The field shows a <strong>red bell icon</strong> in the entry form once an alert is active. You can tap <strong>Edit alerts</strong> at any time to modify or disable it.</p>
+                                    <p class="mt-2 text-amber-700 bg-amber-50 rounded px-3 py-2">⚠️ Alerts cannot be set for dates in the past. If you pick a past date, the alert option will be unavailable until you change the date to a future time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Viewing all active alerts</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>From the log list, tap the <strong>bell icon</strong> in the top toolbar (it shows a badge count when alerts are active). This opens the <strong>Active Alerts</strong> view showing every scheduled alert across all your logs.</p>
+                                    <p class="mt-2">Use the time filter tabs to narrow the list:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li><strong>All</strong> — every upcoming alert</li>
+                                        <li><strong>1dy</strong> — firing within the next 24 hours</li>
+                                        <li><strong>1wk</strong> — firing within the next 7 days</li>
+                                        <li><strong>1mo</strong> — firing within the next month</li>
+                                        <li><strong>1yr</strong> — firing within the next year</li>
+                                    </ul>
+                                    <p class="mt-2">Each card shows the log name, field name, scheduled date and time, and how far away it is (e.g. "in 4 wk 5 days"). Tap the log name arrow to navigate directly to that entry.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Notification behavior &amp; permissions</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>When an alert fires, iOS delivers a notification. Tapping it opens LogHound directly to the relevant entry.</p>
+                                    <p class="mt-2">The first time you save an alert, LogHound will ask for iOS notification permission. If you decline and later want alerts, go to <strong>iOS Settings &rarr; LogHound &rarr; Notifications</strong> and enable them.</p>
+                                    <p class="mt-2">Alerts are scheduled locally on your device — no internet connection is required for them to fire.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Export & Backup -->
+                <section id="export-backup" class="help-section mb-8" data-section-title="Export &amp; Backup">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#export-backup" class="hover:text-accent-600 transition-colors">Export &amp; Backup</a>
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Exporting to CSV</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Long-press a log on the home screen or use the <strong>"..."</strong> menu inside a log and select <strong>CSV Export</strong>.</p>
+                                    <p class="mt-2">The CSV file includes a header row with field names and one data row per entry. The iOS Share Sheet opens so you can save, email, AirDrop, or send the file wherever you need it.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Backing up logs</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Go to <strong>Settings</strong> and tap <strong>Backup Logs</strong>. Select the logs you want to include and tap <strong>Backup</strong>.</p>
+                                    <p class="mt-2">This creates a <strong>.loghound</strong> file containing all selected logs, their schemas, and entries. Save it via the Share Sheet.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Restoring from backup</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Go to <strong>Settings</strong> and tap <strong>Restore Logs</strong>. Pick a <strong>.loghound</strong> file from your device or cloud storage.</p>
+                                    <p class="mt-2">If any log names conflict with existing logs, they are automatically renamed to avoid duplicates.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Where files go</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Both CSV exports and .loghound backups use the iOS Share Sheet. You can send files to:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li>AirDrop (to nearby Apple devices)</li>
+                                        <li>Email or Messages</li>
+                                        <li>Files app (local or iCloud Drive)</li>
+                                        <li>Any other app that accepts files</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings -->
+                <section id="settings" class="help-section mb-8" data-section-title="Settings">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#settings" class="hover:text-accent-600 transition-colors">Settings</a>
+                    </h2>
+                    <div class="mb-4">
+                        <img src="assets/screenshots/07-settings.jpg" alt="Settings screen showing trial status, return window, week start, numeric precision, and backup/restore options" class="rounded-xl border border-zinc-200 shadow-sm max-w-[220px]">
+                    </div>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Return window</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Controls whether LogHound automatically reopens your last-viewed log when you return to the app. Options: <strong>5 minutes</strong>, <strong>15 minutes</strong>, <strong>1 hour</strong>, <strong>1 day</strong>, or <strong>Never</strong>.</p>
+                                    <p class="mt-2">If you return within the selected window, the app opens directly to the log you were viewing. Otherwise, it starts at the home screen.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Week start day</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Choose whether weeks start on <strong>Sunday</strong> or <strong>Monday</strong>. This affects how weekly intervals are calculated in Summary view aggregations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Table precision</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Set the number of decimal places (0&ndash;10) shown for numeric values in Table view. This is a display-only setting and does not affect stored data.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Trial & Purchase -->
+                <section id="trial-purchase" class="help-section mb-8" data-section-title="Trial &amp; Purchase">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#trial-purchase" class="hover:text-accent-600 transition-colors">Trial &amp; Purchase</a>
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Free trial</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>LogHound includes a <strong>30-day free trial</strong> with every feature fully unlocked. No credit card required &mdash; just download and start using the app.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>What happens after trial</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>After the trial expires, the app enters <strong>read-only mode</strong>. You can still:</p>
+                                    <ul class="list-disc ml-5 mt-1 space-y-1">
+                                        <li>View all your logs and entries</li>
+                                        <li>Access Settings</li>
+                                    </ul>
+                                    <p class="mt-2">You will not be able to create, edit, export, backup, delete, or duplicate logs or entries until you purchase the app.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Purchasing</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>LogHound is a <strong>one-time purchase</strong> &mdash; no subscription, no recurring fees. Pay once and unlock every feature permanently.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Restoring purchases</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>If you reinstall LogHound or switch to a new device, tap <strong>Restore Purchases</strong> in Settings or on the paywall screen. This re-validates your purchase with the App Store and unlocks the app.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Troubleshooting -->
+                <section id="troubleshooting" class="help-section mb-8" data-section-title="Troubleshooting">
+                    <h2 class="text-xl font-semibold text-zinc-900 mb-4 flex items-center gap-2">
+                        <a href="#troubleshooting" class="hover:text-accent-600 transition-colors">Troubleshooting</a>
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>My data is gone</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Check the <strong>Archive</strong> and <strong>Trash</strong> views first. Logs may have been archived (hidden from the home screen) rather than permanently deleted.</p>
+                                    <p class="mt-2">Deleted logs remain in Trash for 30 days and can be restored at any time during that period.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>Notifications aren't working</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Open the iOS <strong>Settings</strong> app, scroll to <strong>LogHound</strong>, tap <strong>Notifications</strong>, and make sure notifications are enabled.</p>
+                                    <p class="mt-2">Also check that <strong>Allow Notifications</strong> is turned on, and that alerts, sounds, or banners are configured to your preference.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>I bought the app but it shows trial expired</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <p>Tap <strong>Restore Purchases</strong> in Settings or on the paywall screen. This contacts the App Store to verify your purchase and unlock the app.</p>
+                                    <p class="mt-2">Make sure you're signed in with the same Apple ID you used for the original purchase.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion border border-zinc-200 rounded-lg bg-white">
+                            <button class="accordion-trigger w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-zinc-800 hover:bg-zinc-50 rounded-lg transition-colors" aria-expanded="false">
+                                <span>How do I move data to a new phone</span>
+                                <svg class="accordion-icon w-4 h-4 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="px-5 pb-4 text-sm text-zinc-600 leading-relaxed">
+                                    <ol class="list-decimal ml-5 space-y-1">
+                                        <li>On your old device, go to <strong>Settings &rarr; Backup Logs</strong> and select all logs</li>
+                                        <li>Save the <strong>.loghound</strong> file (via AirDrop, iCloud Drive, email, etc.)</li>
+                                        <li>On your new device, install LogHound and go to <strong>Settings &rarr; Restore Logs</strong></li>
+                                        <li>Select the .loghound file to restore all your logs and entries</li>
+                                    </ol>
+                                    <p class="mt-2">Don't forget to <strong>Restore Purchases</strong> on the new device as well.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 hidden w-10 h-10 bg-white border border-zinc-200 rounded-full shadow-lg text-zinc-500 hover:text-accent-600 hover:border-accent-300 transition-all duration-200 flex items-center justify-center" aria-label="Back to top">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-200 bg-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="hover:text-zinc-600 transition-colors">Home</a>
+                    <span class="text-zinc-200">|</span>
+                    <a href="help.html" class="hover:text-zinc-600 transition-colors">Help Center</a>
+                    <span class="text-zinc-200">|</span>
+                    <a href="mailto:support@loghound.com" class="hover:text-zinc-600 transition-colors">Contact Support</a>
+                </div>
+                <p>&copy; 2026 LogHound. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        // --- Sidebar Navigation ---
+        const sections = document.querySelectorAll('.help-section');
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+
+        sections.forEach(function(section) {
+            const id = section.id;
+            const title = section.getAttribute('data-section-title');
+            // Desktop sidebar
+            const link = document.createElement('a');
+            link.href = '#' + id;
+            link.textContent = title;
+            link.className = 'sidebar-link block px-3 py-2 text-sm text-zinc-600 rounded-lg border-l-2 border-transparent hover:bg-zinc-50 hover:text-zinc-900 transition-colors';
+            link.setAttribute('data-section-id', id);
+            sidebarNav.appendChild(link);
+            // Mobile sidebar
+            const mobileLink = link.cloneNode(true);
+            mobileSidebar.appendChild(mobileLink);
+        });
+
+        // Highlight active sidebar link on scroll
+        var sidebarLinks = sidebarNav.querySelectorAll('.sidebar-link');
+        function updateActiveSidebar() {
+            var scrollY = window.scrollY + 120;
+            var current = '';
+            sections.forEach(function(s) {
+                if (s.offsetTop <= scrollY) current = s.id;
+            });
+            sidebarLinks.forEach(function(l) {
+                if (l.getAttribute('data-section-id') === current) {
+                    l.classList.add('active');
+                } else {
+                    l.classList.remove('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveSidebar, { passive: true });
+        updateActiveSidebar();
+
+        // --- Mobile Menu Toggle ---
+        var menuBtn = document.getElementById('mobile-menu-btn');
+        var mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Close mobile menu when a sidebar link is clicked
+        mobileSidebar.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') mobileMenu.classList.add('hidden');
+        });
+
+        // --- Accordion ---
+        document.querySelectorAll('.accordion-trigger').forEach(function(trigger) {
+            trigger.addEventListener('click', function() {
+                var content = this.nextElementSibling;
+                var isOpen = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isOpen);
+                if (isOpen) {
+                    content.style.maxHeight = null;
+                    content.classList.remove('open');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.classList.add('open');
+                }
+            });
+        });
+
+        // --- Search ---
+        var searchDesktop = document.getElementById('search-desktop');
+        var searchMobile = document.getElementById('search-mobile');
+        var statusDesktop = document.getElementById('search-status-desktop');
+        var statusMobile = document.getElementById('search-status-mobile');
+
+        function fuzzyMatch(text, query) {
+            var lower = text.toLowerCase();
+            var terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+            return terms.every(function(term) { return lower.indexOf(term) !== -1; });
+        }
+
+        function performSearch(query) {
+            var total = sections.length;
+            var visible = 0;
+            sections.forEach(function(section) {
+                var text = section.textContent || section.innerText;
+                if (!query || fuzzyMatch(text, query)) {
+                    section.classList.remove('section-hidden');
+                    visible++;
+                } else {
+                    section.classList.add('section-hidden');
+                }
+            });
+            // Update status
+            var msg = query ? (visible + ' of ' + total + ' sections') : '';
+            statusDesktop.textContent = msg;
+            statusMobile.textContent = msg;
+            statusDesktop.classList.toggle('hidden', !query);
+            statusMobile.classList.toggle('hidden', !query);
+            // If searching, expand matching accordions
+            if (query) {
+                sections.forEach(function(section) {
+                    if (!section.classList.contains('section-hidden')) {
+                        section.querySelectorAll('.accordion').forEach(function(acc) {
+                            var accText = acc.textContent || acc.innerText;
+                            var trigger = acc.querySelector('.accordion-trigger');
+                            var content = acc.querySelector('.accordion-content');
+                            if (fuzzyMatch(accText, query)) {
+                                trigger.setAttribute('aria-expanded', 'true');
+                                content.style.maxHeight = content.scrollHeight + 'px';
+                                content.classList.add('open');
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function syncSearch(source, target) {
+            target.value = source.value;
+            performSearch(source.value.trim());
+        }
+        searchDesktop.addEventListener('input', function() { syncSearch(searchDesktop, searchMobile); });
+        searchMobile.addEventListener('input', function() { syncSearch(searchMobile, searchDesktop); });
+
+        // --- Back to Top ---
+        var backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.remove('hidden');
+                backToTop.classList.add('flex');
+            } else {
+                backToTop.classList.add('hidden');
+                backToTop.classList.remove('flex');
+            }
+        }, { passive: true });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    })();
+    </script>
+    <script>
+    // AI Help accordion
+    (function() {
+        var toggle = document.getElementById('ai-help-toggle');
+        var body = document.getElementById('ai-help-body');
+        var chevron = document.getElementById('ai-help-chevron');
+        toggle.addEventListener('click', function() {
+            var expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !expanded);
+            body.classList.toggle('hidden', expanded);
+            chevron.style.transform = expanded ? '' : 'rotate(180deg)';
+        });
+    })();
+
+    function copyAiPrompt() {
+        var text = document.getElementById('ai-prompt-text').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            var copyIcon = document.getElementById('copy-icon');
+            var checkIcon = document.getElementById('check-icon');
+            copyIcon.classList.add('hidden');
+            checkIcon.classList.remove('hidden');
+            setTimeout(function() {
+                copyIcon.classList.remove('hidden');
+                checkIcon.classList.add('hidden');
+            }, 2000);
+        });
+    }
+    </script>
+</body>
+</html>
