@@ -428,10 +428,33 @@
             <div class="p-6 sm:p-8">
                 <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
                 <p id="modal-description" class="text-slate-400 mb-6 leading-relaxed"></p>
-                <div class="flex justify-center">
+
+                <!-- Single image -->
+                <div id="modal-single" class="flex justify-center">
                     <div class="bg-slate-900/60 border border-slate-700/50 rounded-[2rem] p-2.5 shadow-xl max-w-xs w-full">
                         <img id="modal-image" src="" alt="" class="rounded-[1.5rem] w-full">
                     </div>
+                </div>
+
+                <!-- Carousel -->
+                <div id="modal-carousel" class="hidden">
+                    <div class="flex items-center gap-3">
+                        <button onclick="carouselPrev()" class="flex-shrink-0 w-9 h-9 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                        </button>
+                        <div class="flex-1 flex justify-center">
+                            <div class="bg-slate-900/60 border border-slate-700/50 rounded-[2rem] p-2.5 shadow-xl max-w-xs w-full">
+                                <img id="carousel-image" src="" alt="" class="rounded-[1.5rem] w-full">
+                            </div>
+                        </div>
+                        <button onclick="carouselNext()" class="flex-shrink-0 w-9 h-9 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                    <!-- Dots -->
+                    <div id="carousel-dots" class="flex justify-center gap-2 mt-4"></div>
+                    <!-- Slide label -->
+                    <p id="carousel-label" class="text-center text-sm text-slate-400 mt-3"></p>
                 </div>
             </div>
         </div>
@@ -447,9 +470,12 @@
         },
         'multiple-views': {
             title: 'Multiple Views',
-            description: 'Switch between Card view for a rich visual summary of each entry, Table view for a compact spreadsheet-style overview, and Summary view for aggregations like sum, average, min, max, and count — broken down by day, week, or month.',
-            image: 'assets/screenshots/02-running-cards.jpg',
-            alt: 'LogHound card view showing a running log with multiple entries'
+            description: 'Switch between Card, Table, and Summary views of the same log. Summary supports sum, average, and count aggregations broken down by day, week, month, or year.',
+            slides: [
+                { image: 'assets/screenshots/02-running-cards.jpg', label: 'Cards — rich entry view' },
+                { image: 'assets/screenshots/03-running-table.jpg', label: 'Table — compact overview' },
+                { image: 'assets/screenshots/12-summary-sum-week.jpg', label: 'Summary — weekly totals' }
+            ]
         },
         'alerts': {
             title: 'Alerts & Reminders',
@@ -471,18 +497,61 @@
         }
     };
 
+    var carouselIndex = 0;
+    var carouselSlides = [];
+
     function openModal(key) {
         var data = modalData[key];
         if (!data) return;
         document.getElementById('modal-title').textContent = data.title;
         document.getElementById('modal-description').textContent = data.description;
-        var img = document.getElementById('modal-image');
-        img.src = data.image;
-        img.alt = data.alt;
+
+        if (data.slides) {
+            carouselSlides = data.slides;
+            carouselIndex = 0;
+            document.getElementById('modal-single').classList.add('hidden');
+            document.getElementById('modal-carousel').classList.remove('hidden');
+            renderCarousel();
+        } else {
+            carouselSlides = [];
+            document.getElementById('modal-single').classList.remove('hidden');
+            document.getElementById('modal-carousel').classList.add('hidden');
+            var img = document.getElementById('modal-image');
+            img.src = data.image;
+            img.alt = data.alt;
+        }
+
         var modal = document.getElementById('feature-modal');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
+    }
+
+    function renderCarousel() {
+        var slide = carouselSlides[carouselIndex];
+        var img = document.getElementById('carousel-image');
+        img.src = slide.image;
+        img.alt = slide.label;
+        document.getElementById('carousel-label').textContent = slide.label;
+
+        var dotsEl = document.getElementById('carousel-dots');
+        dotsEl.innerHTML = '';
+        carouselSlides.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.className = 'w-2 h-2 rounded-full transition-colors ' + (i === carouselIndex ? 'bg-teal-400' : 'bg-slate-600 hover:bg-slate-500');
+            dot.onclick = function() { carouselIndex = i; renderCarousel(); };
+            dotsEl.appendChild(dot);
+        });
+    }
+
+    function carouselPrev() {
+        carouselIndex = (carouselIndex - 1 + carouselSlides.length) % carouselSlides.length;
+        renderCarousel();
+    }
+
+    function carouselNext() {
+        carouselIndex = (carouselIndex + 1) % carouselSlides.length;
+        renderCarousel();
     }
 
     function closeModal() {
@@ -494,6 +563,8 @@
 
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft' && carouselSlides.length) carouselPrev();
+        if (e.key === 'ArrowRight' && carouselSlides.length) carouselNext();
     });
     </script>
 </body>
