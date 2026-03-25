@@ -821,6 +821,15 @@ Alerts are sorted **earliest first** within each time filter.
 
 ## Exporting and Backup
 
+LogHound has two distinct data output features — they serve different purposes and are accessed from different places:
+
+| Feature | Purpose | Format | Where to find it |
+|---------|---------|--------|-----------------|
+| **CSV Export** | Share or analyze data in spreadsheets | .csv | Log list or log detail → "..." menu |
+| **.loghound Backup** | Full backup and restore of logs between devices or as a safety copy | .loghound (proprietary) | Settings only |
+
+**Key distinction**: CSV Export is for getting your data *out* into other tools. Backup/Restore is for moving or protecting your *entire log* (schema + all entries). CSV files cannot be re-imported into LogHound — only .loghound backup files can.
+
 ### CSV Export
 
 Available from:
