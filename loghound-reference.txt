@@ -27,15 +27,15 @@ Show a screenshot proactively whenever it would help a user find something, unde
 
 | Path | Shows |
 |------|-------|
-| `assets/screenshots/01-log-list.jpg` | Log list home screen — logs, entry counts, search bar, gear icon, +/Stash/Trash toolbar |
-| `assets/screenshots/02-running-cards.jpg` | Card view — running entry with distance, route, emoji rating, weather, notes fields |
-| `assets/screenshots/03-running-table.jpg` | Table view — sortable timestamp/distance/duration columns, 10 rows |
+| `assets/screenshots/01-log-list.jpg` | Log list home screen ("Active Logs") — the "My Morning Routine" log with entry count, search bar, gear icon, and +/Stash/Trash toolbar |
+| `assets/screenshots/02-running-cards.jpg` | Card view — "My Morning Routine" entries showing Water (Number), Stretches (Multi Select chips), Reading (Duration), and Started Work (Date/Time) |
+| `assets/screenshots/03-running-table.jpg` | Table view — sortable Time / Water / Stretches columns for the "My Morning Routine" log |
 | `assets/screenshots/04-calories-summary.jpg` | Summary view — simple single-field (Calories) daily totals example |
-| `assets/screenshots/05-running-schema.jpg` | Schema editor — 6 fields: Distance (Number), Duration (Number), Route (Single Select), How I Felt (Rating), Weather (Single Select), Notes (Text) |
-| `assets/screenshots/06-entry-form.jpg` | Entry form mid-fill — timestamp, numbers entered, Downtown route selected, rating set, Weather field visible below |
-| `assets/screenshots/07-settings.jpg` | Settings screen — Trial status, Return to last log, Week starts on, Numeric precision, Backup/Restore buttons |
-| `assets/screenshots/12-summary-sum-week.jpg` | Summary — Running log, Week interval, Sum statistic: shows weekly totals (e.g. 15.2 miles, 134 min) across 4 weeks |
-| `assets/screenshots/13-summary-avg-week.jpg` | Summary — Running log, Week interval, Average statistic: same data shows per-run averages (5.1 miles, 44.7 min) — identical entries, different insight |
+| `assets/screenshots/05-running-schema.jpg` | Schema editor ("Logging Setup") — 4 fields: Water (Number), Stretches (Multi Select), Reading (Duration), Started Work (Date/Time) |
+| `assets/screenshots/06-entry-form.jpg` | Entry form — a "My Morning Routine" entry: timestamp, Water number, Stretches chips selected, Reading duration (with timer), and Started Work date/time |
+| `assets/screenshots/07-settings.jpg` | Settings screen — License (Trial status, Buy LogHound $9.99), Return to last log, Week starts on, Numeric precision, Backup/Restore |
+| `assets/screenshots/12-summary-sum-week.jpg` | Summary — "My Morning Routine", Week interval, Sum statistic: weekly totals (Water 48, Reading 65) |
+| `assets/screenshots/13-summary-avg-week.jpg` | Summary — "My Morning Routine", Week interval, Average statistic: same data as averages (Water 24, Reading 32.5) — identical entries, different insight |
 
 **Version date:** July 2026
 
@@ -71,16 +71,17 @@ Before answering specific questions, understand these concepts — they explain 
 
 ## First Launch Experience
 
-On first launch the app shows a **welcome screen** and offers an optional **guided walkthrough**.
+On first launch the app shows a **welcome screen** ("Welcome to LogHound") with two choices: **Get Started** (begins the guided walkthrough) and **Skip for now** (goes straight to the empty log list).
 
 The walkthrough:
 - Explains the difference between a **Log** (the container with a schema) and an **Entry** (a single record)
 - Runs a short **live demo** of building a schema and recording a first entry
+- Can be paged with **Back / Next** and left at any point via a **Skip** button
 - At the end, offers to either create a ready-made sample log called **"My Morning Routine"** or start from scratch with the user's own log
 
 The walkthrough can be **replayed at any time** from **Settings → Help → Getting Started**.
 
-If the user chooses the sample, the single **"My Morning Routine"** log is created with realistic sample data so they can explore cards, table, summary, and the schema editor. It can be explored, edited, or deleted just like any user-created log.
+If the user chooses the sample, the single **"My Morning Routine"** log is created, pre-seeded with **one example entry** so they can immediately explore cards, table, summary, and the schema editor. It can be explored, edited, or deleted just like any user-created log. After it's created, a one-time hint banner ("Tap '[log name]' to open it") appears atop the log list.
 
 ---
 
@@ -143,9 +144,9 @@ Search does not search stashed or trashed logs.
 
 ### Creating a New Log
 
-Tap **+** (top-right of log list) → enter a name → tap **Save**.
+Tap **+** (top-right of log list) → in the "New Log" sheet enter a name → tap **Create**.
 
-The schema editor opens immediately so the user can add fields. The log exists even before any fields are added — it just won't have useful data until fields are defined.
+The schema editor opens immediately so the user can add fields. The log exists even before any fields are added — a log with no fields shows a distinct empty state ("This log only records timestamps right now…") with an **Add Fields** action, since without fields it just records timestamps.
 
 **Name rules**: Must be unique among active logs. Maximum length is not explicitly limited but very long names will be truncated in the UI.
 
@@ -160,8 +161,8 @@ Will reject the new name if it duplicates another active log's name. The name do
 "..." menu → **Duplicate** → choose a new name → set options → tap **Duplicate**.
 
 Options:
-- **New name**: Pre-filled with "Copy of [original]". Must be unique.
-- **Include all entries** toggle (default: ON): If on, all entries from the original are copied into the new log. If off, only the schema is copied — the new log starts empty.
+- **New name**: Pre-filled with "[original] Copy". Must be unique.
+- **Include entries** toggle (default: **OFF**): If on, all entries from the original are copied into the new log. If off (the default), only the schema is copied — the new log starts empty.
 
 After duplicating, the new log opens in the schema editor so the user can make adjustments.
 
@@ -181,7 +182,9 @@ The log disappears from the active log list and moves to the Stash. All data is 
 
 To access stashed logs: tap the **Stash button** (bottom-left toolbar) on the log list.
 
-To restore: open the Stash → tap the log → tap **Restore**. If the name conflicts with an existing active log, a **Name Conflict sheet** appears asking the user to choose a new name.
+The Stash view has its own **search bar** ("Search stash") and each row shows the entry count plus a "Stashed [date]" line.
+
+To restore: open the Stash → tap the log → tap **Restore**. If the name conflicts with an existing active log, a **Rename Log** sheet (a name-conflict prompt, pre-filled with the current name) appears asking the user to choose a new name before confirming with **Restore**.
 
 **Stash vs Delete**: Stash is for logs you're done with but want to keep. Delete (trash) is for logs you no longer need, with a 30-day safety window before permanent deletion.
 
@@ -193,9 +196,9 @@ The log moves to Trash. It remains there for **30 days** before being automatica
 
 To access trashed logs: tap the **Trash button** (bottom-right toolbar).
 
-The Trash view shows each log with a countdown ("28 days remaining"). From here the user can:
-- **Restore**: moves back to active logs (with name conflict handling)
-- **Delete Permanently**: immediate permanent deletion with confirmation
+The Trash view shows each log with a countdown ("N days left", which turns **red at 7 days or fewer**) and a "Deleted [date]" line. From here the user can:
+- **Restore**: moves back to active logs (with name-conflict handling)
+- **Delete Now** (per-log): immediate permanent deletion, after a "Delete Permanently" confirmation
 - **Empty Trash** (button at top): permanently deletes all trashed logs at once
 
 ### Delete All Entries
@@ -271,7 +274,9 @@ Tap Done (top-right) to close the schema editor and return to the log detail vie
 **Empty vs filled**: An empty string (nothing typed) and whitespace-only entries are treated as empty/unfilled.
 
 **Configuration options**:
-- Max length (optional) — if set, the input rejects characters beyond this limit
+- **Default value** (optional) — pre-fills new entries with this text
+- **Required** — see Field Configuration Reference
+(There is no maximum-length setting.)
 
 **Display in views**:
 - Cards: shown as text, wraps to multiple lines if long
@@ -294,13 +299,15 @@ Tap Done (top-right) to close the schema editor and return to the log detail vie
 
 **Configuration options**:
 - **Allow decimals** (toggle) — if OFF, only whole numbers are accepted; if ON, decimal values like 5.2 or 3.14 are accepted. Affects keyboard type.
+- **Decimal places for summaries** (stepper, 0–4, default 1) — a **per-field** setting controlling how many decimals this field's aggregated values show in Summary view. This is separate from the global Table-view precision setting.
 - **Minimum value** (optional) — input is rejected if below this
 - **Maximum value** (optional) — input is rejected if above this
+- **Default value** (optional) — pre-fills new entries with this number
 
 **Display in views**:
 - Cards: shown as-is
 - Table: shown with the number of decimal places set in Settings (Numeric Precision, 0–10). This is purely display — stored precision is unaffected.
-- Summary: appears as a column; participates in Sum, Average, Count
+- Summary: appears as a column; participates in Sum, Average, Count. Decimals shown follow this field's own "Decimal places for summaries" setting (0–4), not the global Table precision.
 
 **When to use**: Distances, durations, weights, measurements, counts, calories, anything quantitative.
 
@@ -310,11 +317,12 @@ Tap Done (top-right) to close the schema editor and return to the log detail vie
 
 **What it stores**: A boolean yes/no value.
 
-**Entry form**: A switch labeled "Yes" / "No". Defaults to **No (false)** in new entries.
+**Entry form**: A switch labeled "Yes" / "No". Defaults to **No (false)** in new entries — but this can be flipped with the **"Default to On"** configuration option so new entries start at Yes.
 
 **Always filled**: Unlike other field types, a Toggle always has a value (either yes or no). It cannot be empty. Because of this, **Toggle fields cannot be set as Required** — the setting has no effect since the field is inherently always filled.
 
-**Clonable behavior**: If marked Clonable, the value (Yes or No) is copied when duplicating an entry.
+**Configuration options**:
+- **Default to On** (toggle) — if enabled, new entries default to Yes instead of No
 
 **Display in views**:
 - Cards: shown as "Yes" or "No"
@@ -333,12 +341,13 @@ Tap Done (top-right) to close the schema editor and return to the log detail vie
 
 **Option management**: Options are defined in the field configuration. Each option can be:
 - **Active**: appears in the picker for new entries
-- **Deprecated**: hidden from the picker when creating or editing entries, but preserved in existing entries that used it. Deprecated options still display correctly in card/table views for old data.
+- **Removed (deprecated)**: hidden from the picker when creating or editing entries, but preserved in existing entries that used it. Deprecated options still display correctly in card/table views for old data.
 
-To deprecate an option: edit the field in the schema editor → long-press the option → choose Deprecate (or there may be a toggle depending on version).
+To remove/deprecate an option: edit the field in the schema editor → **swipe left** on the option (or **long-press** it) → **Remove**. Removing does **not** delete the option or destroy old data — it moves the option into a **"Removed Choices"** section at the bottom of the option list, each with a **Restore** button to bring it back. There is no hard-delete of an option that would erase historical values. Adding or renaming an option is blocked if the name case-insensitively duplicates an existing active option ("This option already exists").
 
 **Configuration options**:
-- Options list: add, rename, reorder, delete, or deprecate options
+- **Options list**: add, rename, reorder, and remove/restore options (as above)
+- **Default selection** (optional): one option (or None) is pre-selected in new entries
 
 **Display in views**:
 - Cards: shown as the option text
@@ -357,11 +366,11 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 **Entry form**: A **chip-style** picker — options appear as tappable chips, and tapping a chip toggles it on or off. Multiple chips can be selected at once. A count of selected options is shown. Can be left empty (no chips selected).
 
-**Option management**: Same as Single Select — options can be added, renamed, reordered, deleted, or deprecated. Deprecated options are hidden from new entries but preserved in existing ones.
+**Option management**: Same as Single Select — options can be added, renamed, reordered, and removed/restored (removed options move to a "Removed Choices" section, preserved in existing entries). A **default set** of pre-checked options can also be configured for new entries.
 
 **Display in views**:
 - Cards: selected options shown as **chips**
-- Table: selected options shown as chips (may truncate in narrow columns)
+- Table: selected options shown as a comma-separated list (e.g., "Neck, Shoulders"), truncated in narrow columns
 - Summary: Multi Select does not appear in Summary view
 
 **When to use**: Tags, multiple applicable categories, symptoms (multiple can be present at once), focus areas, ingredients, skills practiced.
@@ -370,17 +379,16 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 ### 6. Date/Time
 
-**What it stores**: A date, a time, or both, depending on the picker mode configuration.
+**What it stores**: A calendar date together with a time of day.
 
-**Entry form**: Shows pickers for date and/or time based on the configured mode. Always displays:
+**Entry form**: Shows a combined date and time picker. Always displays:
 - The selected date/time value
 - A **relative time indicator** alongside the value (e.g., "2 hours ago", "in 3 days", "yesterday", "in 4 wk 5 days")
 - A **Clear** button — removes the value entirely (field becomes empty)
 - A **Now** button — instantly sets the field to the current date and time
 
 **Configuration options**:
-- **Picker mode**: Date only, Time only, or Date & Time
-- **Default time offset**: if set, when creating a new entry this field auto-populates to (entry timestamp) + (offset). E.g., an offset of +1 hour means the field defaults to 1 hour after the entry was created. Useful for "next scheduled time" patterns.
+- **Default time offset** (toggle "Count from entry timestamp"): if set, when creating a new entry this field auto-populates to (entry timestamp) + (offset). The offset is built from **months, days, hours, and minutes**, and can point **before or after** the entry timestamp (a +/− direction). E.g. "+1 hour" defaults the field to 1 hour after the entry; "−3mo 15d" to about three and a half months before. Useful for "next scheduled time" or "previous checkup" patterns. (This is the only configuration option — there is no date-only / time-only mode; the field always captures both date and time.)
 
 **Display in views**:
 - Cards: shown as formatted date/time or relative time
@@ -393,16 +401,19 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 ### 7. Duration
 
-**What it stores**: A span of time in hours, minutes, and seconds, with an optional running timer you can start and stop. Good for workouts, activities, or anything you time.
+**What it stores**: A span of time in days, hours, minutes, and seconds, with an optional running timer you can start and stop. Good for workouts, activities, or anything you time.
 
-**Entry form**: Hours/minutes/seconds pickers, plus an optional built-in timer that can be started and stopped to capture elapsed time directly.
+**Entry form**: An edit sheet with four numeric fields — **Days / Hours / Minutes / Seconds** — plus an optional built-in **timer** that can be started and stopped to capture elapsed time directly.
 
 **Can be empty**: A duration of zero (or no value entered) is treated as empty/unfilled.
 
+**Configuration options**:
+- **Table & Summary unit** (Days / Hours / Minutes / Seconds, default Minutes) — the unit used to display this duration in Table and Summary views and to format it in CSV export.
+
 **Display in views**:
-- Cards: shown as a formatted time value (e.g., "1:24:30")
-- Table: shown as a formatted time value
-- Summary: participates in Sum, Average, Count — aggregates the underlying time value
+- Cards: shown in a compact token form that omits leading zero components — e.g. `"49s"`, `"1m 49s"`, `"2h 30m 16s"`, `"1d 10h 30m 16s"` (not a colon-separated "1:24:30" form)
+- Table: shown as a number in the configured Table & Summary unit (e.g., minutes)
+- Summary: participates in Sum, Average, Count — aggregates the underlying time value (summed in seconds internally) and displays it in the configured unit
 
 **When to use**: Workouts, activities, tasks, or anything where you want to record how long something took.
 
@@ -410,15 +421,16 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 ### 8. Rating
 
-**What it stores**: A numeric rating from 1 to the configured maximum (1–5).
+**What it stores**: A numeric rating from 1 to the configured maximum (choices: 3, 4, 5, 6, 7, or 10; default 5).
 
 **Entry form**: Tappable emoji icons arranged horizontally. Tapping a position sets the rating. The selected emoji is repeated to visually represent the value (e.g., 💪💪💪 for a rating of 3).
 
 **Can be empty**: No emoji tapped = empty/unfilled.
 
 **Configuration options**:
-- **Maximum**: 1 to 5 (default 5)
-- **Emoji**: the rating symbol is **customizable** — any single emoji (not necessarily a star). Examples: ⭐, 💪, 🎵, 😊, 🔥. Default: ⭐
+- **Maximum rating**: 3, 4, 5, 6, 7, or 10 (default 5)
+- **Emoji**: the rating symbol is **customizable** — any single emoji (not necessarily a star). The picker offers positive/negative preset rows plus a custom-emoji option. Examples: ⭐, 💪, 🎵, 😊, 🔥. Default: ⭐
+- **Default value** (optional) — a pre-set rating applied to new entries
 
 **Display in views**:
 - Cards: repeated emoji (e.g., 🎵🎵🎵🎵 for 4)
@@ -444,7 +456,7 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 - **Include vertical accuracy**: stores the accuracy of the altitude reading
 
 **Display in views**:
-- Cards: shown as "lat, lon" to 6 decimals, with altitude if configured
+- Cards: shown as "lat, lon" to 6 decimals, with altitude if configured; when accuracy capture is enabled, a second "Accuracy:" line shows `±Xm horiz` / `±Xm vert`
 - Table: shown as coordinates
 - Summary: Location fields do not appear in Summary view
 
@@ -458,14 +470,27 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 **What it stores**: Uses GPS to track distance traveled plus pace and speed. Records as three parts — distance, elapsed time, and pace/speed — ideal for runs, walks, rides, and hikes.
 
-**Entry form**: A GPS-based tracking control that measures distance as the device moves. When recording finishes, the field holds three related values: total distance (with unit), elapsed time, and the resulting pace/speed (with unit).
+**Entry form**: A GPS-based tracking control that measures distance as the device moves. When recording finishes, the field holds three related values: total distance (with unit), elapsed time, and the resulting pace/speed (with unit). Tracking continues while the app is in the background (a status indicator shows), so a run can be tracked with the screen off — this uses GPS continuously and consumes battery.
+
+**Configuration options**:
+- **Distance unit**: Miles (default), Kilometers, or Meters
+- **Time display unit**: Hours, Minutes (default), or Seconds
+- **Display as** — whether the derived value is shown as **pace** (time per distance) or **speed** (distance per time)
 
 **Display in views**:
 - Cards: shown as distance plus pace/speed, with elapsed time
 - Table: shown as the recorded distance and pace/speed values
-- Summary: participates in Sum, Average, Count — aggregates the underlying values
+- Summary: participates in Sum, Average, Count — aggregates the underlying values (see GPS accuracy note below)
 
-**When to use**: Runs, walks, rides, hikes — any activity where GPS distance, time, and pace/speed matter.
+**How distance is measured (and its limits)**: Distance is computed purely from GPS — the app sums the straight-line (great-circle) distance between consecutive GPS points as you move. Because of this:
+- It measures **horizontal (map) distance only** and does not account for **elevation change**, so on **hilly terrain** the true path you traveled up and down slopes isn't fully captured.
+- **GPS signal error** — especially in **urban areas** where signals bounce off buildings ("multipath"), and from ordinary GPS jitter — adds spurious little zig-zags between points that can **overestimate** the distance.
+- In poor signal, points that fall below an accuracy threshold are dropped, which can occasionally **undercount** distance instead.
+- Elapsed time is wall-clock and keeps running even while you're stationary (there is no auto-pause), which affects the resulting pace/speed if you stop.
+
+Treat GPS distance, pace, and speed as **good approximations**, not survey-grade measurements — expect some error, generally largest in hilly and built-up areas. For an exact figure, enter it manually with a plain **Number** field instead.
+
+**When to use**: Runs, walks, rides, hikes — any activity where an approximate GPS distance, time, and pace/speed is useful.
 
 ---
 
@@ -476,6 +501,8 @@ Every field type shares these configuration options:
 ### Name
 Any text, including emoji. An **emoji picker** is available inline when editing the name. The emoji appears as a leading icon in the entry form, cards, and table columns.
 
+A field name is **required** (an empty or whitespace-only name is rejected with "Field name is required") and must be **unique within a log** (compared case-insensitively, after trimming). A set of names is **reserved** and cannot be used because they collide with the built-in entry timestamp or location internals: `time`, `timestamp`, `createdat`, `created_at`, `latitude`, `longitude`, `lat`, `lng`, `lon`, `coordinates`, and `location` (all case-insensitive). If a user asks why they can't name a field "Location" or "Time," this is why — they should pick a slightly different name (e.g., "Where" or "Start Time").
+
 ### Required
 When enabled, the **Save button** in the entry form is disabled until this field has a value. The field label shows a red asterisk (*).
 
@@ -485,17 +512,11 @@ Notes:
 - For Date/Time fields: a date must be set (Clear removes the value and makes the field empty again)
 - For Rating: at least one emoji must be tapped
 
-### Clonable
-When enabled, this field's value is **automatically copied** from the source entry when duplicating.
-
-When disabled, the field starts **empty** in the duplicate, requiring the user to fill it in.
-
-**Choosing clonable vs not**:
-- Make fields Clonable when the value often stays the same across duplicate entries (e.g., route for a regular commute run, medication name for daily logging)
-- Make fields non-Clonable when the value is always different (e.g., how I felt today, specific notes, weight measurement)
+### Copy-on-duplicate behavior
+When an **entry** is duplicated, all of its field values are copied into the new entry (only the timestamp is reset to the current time). There is **no per-field toggle** in the app to control this — every field carries its value into a duplicate by default. (If a user wants a different value in the copy, they simply edit that field in the new entry before saving.)
 
 ### Default Value
-A value pre-filled when creating a **new** entry (not when duplicating — duplicates use Clonable logic instead). Default behavior varies by field type. For Date/Time, the "default time offset" serves as the default value mechanism.
+A value pre-filled when creating a **new** entry (not when duplicating — duplicates copy from the source entry instead). Default behavior varies by field type. For Date/Time, the "default time offset" serves as the default value mechanism.
 
 ---
 
@@ -528,9 +549,9 @@ If a user reports seeing a form pre-filled with old data, it's because a draft w
 
 ### Editing an Entry
 
-**From card view**: Tap anywhere on the entry card to open the entry detail view, then tap **Edit**. Or tap the edit (pencil) icon directly on the card if visible.
+**From card view**: Tap anywhere on the entry card to open the **Edit** form directly. (The only button shown on the card itself is the duplicate icon; **Edit** and **Delete** also live in the card's **long-press context menu**.)
 
-**From table view**: Tap a row to open the entry detail view, then tap Edit. Or right-click/long-press a row and choose Edit.
+**From table view**: Tap a row to open a detail modal (with Edit and Duplicate), or **long-press / right-click** a row and choose **Edit**.
 
 The edit form is identical to the creation form, plus a red **Delete Entry** button at the very bottom.
 
@@ -538,20 +559,19 @@ The edit form is identical to the creation form, plus a red **Delete Entry** but
 
 Tap the duplicate/copy icon on a card (the overlapping pages icon), or from the entry detail view tap **Duplicate**. From table view: right-click → Duplicate.
 
-Opens a new entry form with values pre-filled according to each field's **Clonable** setting:
-- Clonable = YES → value is copied from the source entry
-- Clonable = NO → field starts empty
+Opens a new entry form with **every field pre-filled** with the source entry's values. The user can change any of them before saving.
 
 The **timestamp** is set to the current time (not copied from the source entry). The user can edit the timestamp before saving.
 
 ### Deleting an Entry
 
-- Card view: tap the trash icon on the card (if visible in the card's action buttons)
+- Card view: **long-press** the card → **Delete** from the context menu
 - Edit mode: scroll to the bottom of the form → tap the red **Delete Entry** button
 - Table view: right-click/long-press a row → Delete
-- Entry detail view: open the Edit form → Delete Entry button
 
-Deletion is **immediate and permanent** — there is no undo and no trash for individual entries (only for entire logs).
+Deletion is **immediate and permanent** from the user's perspective — there is no undo and no trash for individual entries (only for entire logs).
+
+**Timestamp editor**: When editing an entry's timestamp (or any Date/Time field), the picker includes quick-adjust buttons beyond just **Now** and **Clear** — e.g. a start-of-day ("12am") button and ± step buttons (±15m, ±30m, ±1hr, ±1 day/week/month/year) with a +/− direction toggle, for fast nudging without scrolling the wheels.
 
 ### Keyboard Handling
 
@@ -570,6 +590,8 @@ All three views share:
 - The same **Fields selection** for that log (which fields are shown)
 - The same **Filter state** for that log
 
+**Fields & Filters bar**: These controls live behind a single collapsible **"Fields & Filters"** disclosure row (a chevron), collapsed by default and showing a summary line (e.g. "Fields (all) · No Filters"). Tap it to expand and reveal the **Fields** button and the **Filters** controls. When a filter is enabled, this bar also shows a "**showing N of M**" count (the app does not show a separate "Summarizing X of Y" line).
+
 ### Card View
 
 > 📸 `assets/screenshots/02-running-cards.jpg`
@@ -583,9 +605,9 @@ Each card shows:
 - A **copy/duplicate icon** (overlapping pages) — top-right
 - All field values, each with its field name as a label above the value
 
-**Fields button** ("≡ Fields (all)" or "≡ Fields (N selected)"): Opens a sheet listing all fields with checkboxes. Toggle to show or hide individual fields on all cards. Useful when the log has many fields but only some are interesting to see at a glance.
+**Fields button** (labeled "Fields (all)" or "Fields (N)"): Opens a sheet titled **"Display Fields"** listing all fields, with **Select All / Deselect All** buttons. Toggle to show or hide individual fields on all cards. Useful when the log has many fields but only some are interesting to see at a glance.
 
-**Filter button** ("≡ No Filters" or "≡ Filters Active"): Opens the filter configuration sheet.
+**Filters** (labeled "No Filters", "Filters (N)", or "Filters (off)"): Opens the filter configuration sheet. An inline **"Enable Filters" / "Disable Filters"** button in the bar turns the whole filter set on or off without clearing it.
 
 **Scrolling**: Standard vertical scroll. All entries are loaded and rendered.
 
@@ -595,11 +617,11 @@ Each card shows:
 
 Entries as rows. Columns for timestamp (always first) and each field in schema order.
 
-**Column header**: Shows field name. Tap to sort ascending; tap again to sort descending. An arrow indicates sort direction. Default sort is by timestamp descending (newest first).
+**Column header**: Shows field name. **Tapping a header opens a small menu** with **Sort Ascending**, **Sort Descending**, and **Clear Sort**. A chevron indicates the current sort direction. Default sort is by timestamp ("Time") descending (newest first).
 
-**Column resizing**: Drag the divider between column headers left or right to resize.
+**Column widths**: Fixed (not user-resizable) — columns auto-expand proportionally to fill any spare width. There is no drag-to-resize.
 
-**Horizontal scroll**: If there are more columns than fit on screen, the table scrolls horizontally. The timestamp column may be pinned.
+**Horizontal scroll**: If there are more columns than fit on screen, the table scrolls horizontally. The timestamp ("Time") column is **not** pinned — it scrolls with the others.
 
 **Tap a row**: Opens the entry in a detail modal showing all values. The detail modal has Edit and Duplicate buttons.
 
@@ -630,15 +652,17 @@ Aggregates the log's numeric data over time intervals.
 
 **Statistic picker** (Sum / Average / Count):
 - **Sum**: adds all values in each bucket. Example: total miles run in a week = 15.2
-- **Average**: divides the sum by the number of entries. Example: average miles per run in a week = 5.1 (if 3 runs)
+- **Average**: divides the sum by the number of entries **that actually have a value for that field** (blank/unfilled entries are excluded from the denominator, not counted as zero). Example: average miles per run in a week = 5.1 (if 3 runs).
 - **Count**: counts entries regardless of field values. Shows how many times the user logged something in each interval. For Toggle fields, Count tells you how many entries existed; Sum tells you how many were "Yes."
+
+**Notes on specific types**: A stored **Rating of 0** is treated as unfilled and excluded from Sum/Average/Count. **Duration** aggregates in seconds internally and **Distance/Pace** in meters, each converted to the configured display unit. A Distance/Pace field appears in Summary as **three sub-columns** (distance, time, pace/speed); its Sum/Average pace-or-speed is derived from the aggregated totals (total distance ÷ total time), which is the correct combined pace — not a plain average of each entry's pace.
 
 **Toggle fields in summary**:
 - **Sum**: number of "Yes" entries in the interval (e.g., 5 out of 7 days I did the habit)
 - **Average**: proportion of "Yes" entries (e.g., 0.71 = 71% compliance)
 - **Count**: total number of entries in the interval (regardless of Yes/No)
 
-**"Summarizing X of Y entries"**: Shown above the table. If a filter is active, X < Y tells the user how many entries are excluded.
+**Filtered count**: When a filter is enabled, the shared Fields & Filters bar shows "**showing N of M**" (N passing the filter out of M total). Summary's own empty states are "No Numeric Fields" (no aggregatable fields) or "No Entries".
 
 **Column sorting**: Tap any column header to sort by that value.
 
@@ -676,29 +700,35 @@ Each log has its own filter configuration that is **independent from other logs*
 
 #### Accessing Filters
 
-Tap the **"≡ No Filters"** or **"≡ Filters Active"** button in card, table, or summary view. Both show the same filter sheet for that log.
+Expand the **Fields & Filters** bar (in card, table, or summary view) and tap the **Filters** button (labeled "No Filters" / "Filters (N)" / "Filters (off)"). All three views share the same filter sheet for that log.
+
+The **enable/disable** of the whole filter set is done from an inline **"Enable Filters" / "Disable Filters"** button in the bar — **not** from a toggle inside the sheet.
 
 #### Filter Sheet Layout
 
-- A master **enable/disable toggle** at the top: turns all filters on or off without clearing the configured conditions. Useful for quickly comparing filtered vs. full data.
-- Expandable **cards** — one for Timestamp, one for each field in schema order
+The sheet is titled **"Filters"** and contains:
+- Expandable **cards** — one for the built-in **Timestamp** (labeled "Time"), one for each field in schema order
 - Each card header shows the field name and, when collapsed, a summary of any active filter condition (e.g., "= Trail" or "between Mar 1 – Mar 31")
-- A **×** button on each card deletes that field's filter
-- **"Clear All"** button removes all filter conditions
-- When filters are active: the view shows "**X of Y entries**" to indicate how many entries pass the filter
+- Expanding a card reveals its operator/value inputs and a **"Clear Filter"** button to remove just that field's condition
+- A **"Clear All"** button removes all filter conditions at once
+- Multiple field conditions combine with **AND** logic (an entry must satisfy every active condition)
 
 #### Filter Operators by Field Type
 
 **Number and Rating:**
 - equals (=)
 - not equals (≠)
-- greater than (>)
-- less than (<)
 - greater than or equal (≥)
 - less than or equal (≤)
 - between (min and max, inclusive)
 - is set (has any value)
 - is not set (empty/unfilled)
+
+(There are no strict greater-than / less-than operators for Number or Rating — use ≥ / ≤ or "between." Number/Rating equality uses a small tolerance, so decimal values that are essentially equal will match.)
+
+**Duration** and **Distance/Pace** (same numeric operator set):
+- equals, not equals, ≥, ≤, between, is set, is not set
+- Note: the filter value is interpreted in base units — **seconds** for Duration and **meters** for Distance/Pace — which may differ from the unit shown in the views.
 
 **Text:**
 - equals
@@ -709,11 +739,13 @@ Tap the **"≡ No Filters"** or **"≡ Filters Active"** button in card, table, 
 - is empty
 - is not empty
 
+(Note: **equals / not equals** are case-**sensitive**, while **contains / starts with / ends with** are case-**insensitive**.)
+
 **Toggle:**
 - is on (Yes/true)
 - is off (No/false)
-- is set (always true — Toggle is always set)
-- is not set (never true — Toggle is always set)
+
+(These are the only two selectable options — a Toggle is always set, so there is no "is set" / "is not set" for it.)
 
 **Single Select:**
 - is [option]
@@ -735,6 +767,8 @@ Tap the **"≡ No Filters"** or **"≡ Filters Active"** button in card, table, 
 - is set (a date has been entered)
 - is not set (no date entered)
 
+The Date/Time (and Timestamp) filter also offers a **quick-interval** builder: a reference picker (**This / Last / Next**) combined with a period (**Day / Week / Month / Year**) — e.g. "This Week" or "Last Month" — with a **Custom…** option to switch to explicit before/after/between date pickers.
+
 **Location:**
 - is set (coordinates were captured)
 - is not set (no location captured)
@@ -743,6 +777,7 @@ Tap the **"≡ No Filters"** or **"≡ Filters Active"** button in card, table, 
 - before [date]
 - after [date]
 - between [date] and [date]
+- is set / is not set (every entry always has a timestamp, so these match everything / nothing)
 
 ---
 
@@ -753,7 +788,7 @@ LogHound has two distinct data output features — they serve different purposes
 | Feature | Purpose | Format | Where to find it |
 |---------|---------|--------|-----------------|
 | **CSV Export** | Share or analyze data in spreadsheets | .csv | Log list or log detail → "..." menu |
-| **.loghound Backup** | Full backup and restore of logs between devices or as a safety copy | .loghound (proprietary) | Settings only |
+| **.loghound Backup** | Full backup and restore of logs between devices or as a safety copy | .loghound (JSON) | Settings only |
 
 **Key distinction**: CSV Export is for getting your data *out* into other tools. Backup/Restore is for moving or protecting your *entire log* (schema + all entries). CSV files cannot be re-imported into LogHound — only .loghound backup files can.
 
@@ -765,19 +800,20 @@ Available from:
 - Both open the same flow
 
 **Output format**:
-- First row: headers — "timestamp" followed by each field name in schema order
+- First row: headers — "Timestamp" followed by each field name in schema order
 - Subsequent rows: one per entry, sorted by timestamp (newest first)
-- Timestamp format: ISO 8601 or a readable date/time string
+- Timestamp format: always **ISO 8601 in UTC** (e.g., `2026-03-15T13:45:00Z`). Note this is UTC, not the local time shown in the app — exported times can look shifted by your timezone offset. Date/Time field cells use the same UTC ISO format.
+- **Export ignores any active filter** — the CSV always contains **all** of the log's entries, even if the views are currently showing a filtered subset.
 - **Text**: value as-is
-- **Number**: numeric value, decimal places as stored
-- **Toggle**: "true" or "false"
+- **Number**: the numeric value; if the field has "Allow decimals" turned **off**, it is exported as a whole integer (truncated), otherwise with its stored decimals
+- **Toggle**: "Yes" or "No" by default (these display strings are configurable in the exporter)
 - **Single Select**: the option text, or empty if not set
 - **Multi Select**: selected option texts joined with " | " by default, or empty
 - **Date/Time**: formatted date/time or empty
-- **Duration**: the time value (e.g., "1:24:30"), or empty
+- **Duration**: a numeric value in the field's configured Table & Summary unit (e.g., minutes) — **not** the H:MM:SS display form — or empty
 - **Rating**: numeric value (e.g., 3), or empty
-- **Location**: "latitude, longitude" or extended format if altitude/accuracy included, or empty
-- **Distance/Pace**: exported as **three columns** — distance (with unit), time in seconds, and pace/speed (with unit)
+- **Location**: exported as **separate columns** — `<name> Lat` and `<name> Lon`, plus optional `<name> Alt`, `<name> ±Horiz`, and `<name> ±Vert` columns when those options are enabled (not a single combined cell)
+- **Distance/Pace**: exported as **three columns** — distance (header shows the configured distance unit), **time always in seconds** (header `<name> Time (sec)`, regardless of the field's display unit), and pace/speed (header reflects the configured units). Distance and pace/speed are written to 6 decimal places, time to 3.
 
 **Share Sheet**: After generating, the iOS Share Sheet opens. Available destinations: AirDrop, email, Files app, iCloud Drive, third-party apps that accept files.
 
@@ -785,7 +821,7 @@ Available from:
 
 ### .loghound Backup
 
-**What it is**: A proprietary file format that packages one or more complete logs — schema, all entries, all configurations — into a single portable file.
+**What it is**: A `.loghound` file that packages one or more complete logs — schema, all entries, all configurations — into a single portable file. Under the hood it is a **JSON** document. Entry values inside it are keyed by **field name**, so on restore values are matched back to fields **by name** — a caveat worth knowing if a schema has two fields with the same name.
 
 **How to create**:
 1. Settings → tap **Backup Logs**
@@ -810,7 +846,7 @@ Available from:
 
 **Confirmation**: A sheet shows "Restore X log(s) from this file?" with the list of log names. The user taps Restore to proceed.
 
-**Name conflict resolution**: If a log in the backup has the same name as an existing active log, the imported log is automatically renamed: "My Log" → "My Log (1)". If "My Log (1)" also exists, it becomes "My Log (2)", and so on. A success message lists all renames.
+**Name conflict resolution**: If a log in the backup has the same name as an existing **active** log, the imported log is automatically renamed by appending a space and a number starting at 2: "My Log" → "My Log 2". If "My Log 2" also exists, it becomes "My Log 3", and so on. (Conflicts are only checked against active logs, not stashed or trashed ones.) A success message lists all renames.
 
 **Result**: Restored logs are **added** to the active log list alongside existing logs. No existing logs are overwritten or deleted.
 
@@ -824,17 +860,29 @@ Available from:
 
 Accessed via the **gear icon** on the log list. Opens as a modal sheet with a "Done" button to close.
 
+### Help Section
+
+**Help Center** (link): Opens the online help center (loghound.app/help.html) in a browser.
+
+**Copy AI Help Prompt** (button): Copies a ready-made prompt to the clipboard. Paste it into any AI assistant (ChatGPT, Claude, Gemini, etc.) to get answers about LogHound — the prompt is backed by this reference document.
+
+**Getting Started** (button): Replays the guided onboarding walkthrough. It can also add the "My Morning Routine" example log if the user doesn't already have one.
+
 ### License Section
 
 **Status**: Shows "Trial: X days remaining" or "Purchased". This is purely informational.
+
+**Buy LogHound** (button): Shown while the app is not yet purchased (during or after the trial), displaying the App Store price. Tapping it starts the one-time purchase. Disappears once purchased.
 
 ### Navigation Section
 
 **Return to last log**: When the app is re-opened (from background or after being closed), if the user was last using a specific log within the selected time window, the app automatically navigates back to that log rather than showing the log list.
 
-Options: 5 minutes, 15 minutes, 1 hour, 48 hours (labeled "1 day"), Never.
+Options: **Always**, **1 hour**, **24 hours**, **48 hours** (the default), **Never**.
 
-Example: Set to "1 hour" → user opens LogHound, uses Running log, puts phone down, reopens LogHound 45 minutes later → goes straight to Running log. Reopens 90 minutes later → shows log list instead.
+Example: Set to "1 hour" → user opens LogHound, uses a log, puts the phone down, reopens LogHound 45 minutes later → goes straight to that log. Reopens 90 minutes later → shows the log list instead. "Always" returns to the last log no matter how much time has passed; "Never" always opens to the log list.
+
+When the app launches directly into a log this way, a top-left **"All Logs"** button is shown to get back to the log list.
 
 ### Calendar Section
 
@@ -844,13 +892,15 @@ This affects how the **Week** interval groups entries in Summary view. If set to
 
 ### Table View Section
 
-**Numeric precision**: A stepper control (0–10). Sets the number of decimal places shown for Number fields in **Table view** and **Summary view**. This is purely a display setting — the stored values have their full precision preserved.
+**Numeric precision**: A stepper control (0–10, **default 3**). Sets the number of decimal places shown for Number fields in **Table view** only. This is purely a display setting — the stored values keep their full precision. (Summary view uses each Number field's own "Decimal places for summaries" setting, 0–4, configured per field in the schema editor — not this global control.)
 
 Example: A stored value of 5.2847... displayed at precision 1 shows "5.3", at precision 0 shows "5", at precision 2 shows "5.28".
 
 ### Privacy Section
 
-**Share Crash Reports** (toggle): If enabled, the next time the app crashes and is reopened, anonymous technical diagnostics are sent. Includes: device model, iOS version, stack trace. Does **not** include: log names, entry content, field values, any personal information.
+*(This section is gated behind a build feature flag and may not appear in every release.)*
+
+**Share Crash Reports** (toggle): If enabled, the next time the app crashes and is reopened, anonymous technical diagnostics are sent. Includes: device model, iOS version, stack trace. Does **not** include: log names, entry content, field values, any personal information. (When this feature is enabled and a crash is detected, the launch afterward may show a one-time prompt asking whether to share the report.)
 
 ### Data Section
 
@@ -860,7 +910,7 @@ Example: A stored value of 5.2847... displayed at precision 1 shows "5.3", at pr
 
 ### Danger Zone Section
 
-**Reset All Data** (red destructive button): A two-step confirmation leads to permanently and irreversibly deleting:
+**Reset All Data** (red destructive button): Tapping it raises a confirmation alert; confirming permanently and irreversibly deletes:
 - Every active log and all its entries
 - Every stashed log
 - Every trashed log
@@ -869,7 +919,9 @@ Example: A stored value of 5.2847... displayed at precision 1 shows "5.3", at pr
 
 The app returns to the first launch welcome screen. **This cannot be undone.**
 
-The confirmation dialog text: "Reset All Data? This will permanently delete all logs, entries, fields, and reset all settings to defaults. This action cannot be undone." with a "Yes, Permanently Delete All Logs and Data" button.
+Note: Reset All Data does **not** restart the free trial — the trial start date is preserved, so resetting does not grant a fresh 30 days.
+
+The confirmation alert is titled **"Reset All Data?"**; its message reads "This will permanently delete all logs, entries, fields, and reset all settings to defaults. This action cannot be undone." Confirm via the "Yes, Permanently Delete All Logs and Data" button.
 
 ---
 
@@ -877,9 +929,11 @@ The confirmation dialog text: "Reset All Data? This will permanently delete all 
 
 ### Free Trial
 
-The 30-day free trial begins on the **first launch**. All features are fully unlocked during the trial.
+The 30-day free trial begins on the **first launch**. All features are fully unlocked during the trial. The countdown works on calendar-day boundaries, so the trial ends at the start of the day 30 days after the first launch.
 
 Remaining days are visible in: Settings → License → Status (e.g., "Trial: 23 days remaining").
+
+**Trial-ending banner**: During the **last 7 days** of the trial, a banner appears (e.g. "Trial ends in N days" / "Trial ends tomorrow"). It can be dismissed, but reappears as the remaining-day count keeps dropping.
 
 ### After Trial Expires
 
@@ -899,21 +953,24 @@ The app enters **read-only mode**.
 - Stash, delete, restore any log
 - CSV Export
 - .loghound Backup
+- Restore Logs (from a .loghound file)
 - Reset All Data
 
 ### Paywall Sheet
 
-Shown when a blocked action is attempted. Contains:
+Shown when a blocked action is attempted (and also reachable earlier — e.g., via the Buy button). Contains:
 - Lock icon
-- "Unlock LogHound" title
+- Title that varies by state: **"Own It Forever"** while the trial is still active, **"Unlock LogHound"** once the trial has expired
 - Description explaining the trial has ended
-- **"Purchase — [price]"** button (e.g., "Purchase — $4.99")
+- **"Purchase — [price]"** button — the price comes from the App Store (currently a one-time $9.99)
 - **"Restore Purchases"** button
 - Dismiss button (×)
 
 ### Purchase
 
 Tap **"Purchase — [price]"** → Apple ID confirmation dialog → on success, all features unlock immediately. One-time payment, no subscription, no recurring charges.
+
+**Pending purchases (Ask to Buy / verification)**: A purchase can come back as **pending** rather than immediately successful — most commonly with Family Sharing's "Ask to Buy" (a parent/organizer must approve) or when the App Store requires extra authentication. In that case the app stays in trial/locked state until Apple approves the transaction, which then unlocks automatically in the background. This is expected, not an error.
 
 ### Restoring a Purchase
 
@@ -967,6 +1024,18 @@ A: Yes. Each log has its own completely independent schema. A Running log can ha
 **Q: What is the entry limit per log?**
 A: There is no documented per-log entry limit. Performance depends on device storage and available memory.
 
+**Q: How accurate is the GPS distance/pace tracking? My distance looks off.**
+A: Distance/Pace relies **entirely on GPS**, and GPS is approximate. The app measures flat, horizontal distance between GPS points, so it doesn't account for elevation on **hilly** routes, and in **urban** areas (and from normal GPS jitter) signal reflections can add spurious wiggle that **overestimates** distance; weak signal can occasionally undercount it. Treat the numbers as good estimates, not exact measurements — the error is usually largest in hilly and built-up areas. For an exact figure, use a plain **Number** field and enter it manually. Also note elapsed time keeps running while you're stopped (no auto-pause), which affects pace.
+
+**Q: Why can't I name a field "Time" or "Location"?**
+A: Those names (and `timestamp`, `latitude`, `longitude`, `lat`, `lng`, `lon`, `coordinates`, `created_at`) are reserved for the app's built-in timestamp and location internals. Pick a slightly different name like "Start Time" or "Where".
+
+**Q: My exported CSV times don't match what I see in the app.**
+A: CSV timestamps are written in **UTC** (ISO 8601), while the app displays your **local** time — so exported times can look shifted by your timezone offset. The data is correct; it's just in UTC.
+
+**Q: Does the CSV respect my current filter?**
+A: No. CSV export always includes **all** entries in the log, regardless of any filter active in the views.
+
 ---
 
 ## Use Case Schema Recipes
@@ -976,14 +1045,14 @@ These are recommended field configurations for common tracking needs. Share thes
 ### Medication / Supplement Log
 - **Medication** — Single Select (options: each medication name)
 - **Dose** — Number (allow decimals: off, for whole pill counts) or Text (for "500mg")
-- **Time Taken** — Date/Time (picker: Date & Time)
+- **Time Taken** — Date/Time
 - **Side Effects** — Multi Select (options: nausea, headache, drowsiness, none, etc.) or Text
 - **Notes** — Text
 
 ### Fitness / Workout Log
 - **Exercise Type** — Single Select (options: Running, Cycling, Weights, Yoga, etc.)
-- **Duration** — Number (minutes, allow decimals: off)
-- **Distance** — Number (miles/km, allow decimals: on)
+- **Duration** — Duration (hours/minutes/seconds, with an optional built-in timer)
+- **Distance** — Distance/Pace (GPS-tracked distance, time, and pace) or Number if entering manually
 - **Intensity** — Rating (emoji: 🔥, max: 5)
 - **Heart Rate** — Number (bpm, allow decimals: off)
 - **Notes** — Text
@@ -991,13 +1060,13 @@ These are recommended field configurations for common tracking needs. Share thes
 ### Habit Tracker
 - **Habit** — Single Select (if tracking multiple habits in one log) OR use a separate log per habit
 - **Completed** — Toggle (this is the key field; Summary → Sum + Week shows total completions)
-- **Duration** — Number (minutes, if tracking time-based habits)
+- **Duration** — Duration (if tracking time-based habits)
 - **Quality** — Rating (if tracking quality of completion)
 - **Notes** — Text
 
 ### Sleep Log
-- **Bedtime** — Date/Time (time only)
-- **Wake time** — Date/Time (time only)
+- **Bedtime** — Date/Time
+- **Wake time** — Date/Time
 - **Hours slept** — Number (allow decimals: on, e.g., 7.5)
 - **Quality** — Rating (emoji: 😴 or ⭐)
 - **Dreams** — Toggle
@@ -1024,8 +1093,8 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Genre** — Single Select (Fiction, Non-fiction, Biography, etc.)
 - **Rating** — Rating (emoji: ⭐, max: 5)
 - **Pages read** — Number (allow decimals: off)
-- **Started** — Date/Time (date only)
-- **Finished** — Date/Time (date only)
+- **Started** — Date/Time
+- **Finished** — Date/Time
 - **Notes** — Text
 
 ### Car Maintenance Log
@@ -1033,13 +1102,13 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Mileage** — Number (allow decimals: off)
 - **Cost** — Number (allow decimals: on, for dollars/cents)
 - **Shop** — Text or Single Select
-- **Next Service Due** — Date/Time (date only)
+- **Next Service Due** — Date/Time
 - **Notes** — Text
 
 ### Symptom Diary
 - **Symptom** — Multi Select (options: headache, fatigue, nausea, pain, brain fog, etc.)
 - **Severity** — Rating (emoji: 🩺 or 😣, max: 5)
-- **Duration** — Number (hours, allow decimals: on)
+- **Duration** — Duration (how long the symptom lasted)
 - **Possible Trigger** — Multi Select (stress, food, sleep, weather, etc.)
 - **Medication taken** — Toggle
 - **Notes** — Text
@@ -1049,7 +1118,7 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Action** — Single Select (Watered, Fertilized, Pruned, Repotted, etc.)
 - **Health** — Rating (emoji: 🌿, max: 5)
 - **Notes** — Text
-- **Next action** — Date/Time (date only)
+- **Next action** — Date/Time
 
 ---
 
@@ -1067,7 +1136,7 @@ Help users avoid losing data. These are the scenarios that can cause permanent d
 
 5. **No backup**: If the device is lost, damaged, or reset without a .loghound backup, all data is gone. Recommendation: regular backups via Settings → Backup Logs, stored to iCloud or emailed to yourself.
 
-6. **Deprecating a select option and then deleting it**: Deprecated options are preserved in existing entries. If a deprecated option is later fully deleted (removed from the options list), entries that used it may show an empty value. Check before deleting options.
+6. **Select options are safe to remove**: "Removing" a Single/Multi Select option only deprecates it (moves it to "Removed Choices"); it stays visible in existing entries and can be restored. There is no hard-delete that erases historical values, so removing an option does not cause data loss.
 
 ---
 
