@@ -21,29 +21,23 @@ Show a screenshot proactively whenever it would help a user find something, unde
 | Questions about fields, schema, field types | `assets/screenshots/05-running-schema.jpg` |
 | Questions about creating or filling in an entry | `assets/screenshots/06-entry-form.jpg` |
 | Questions about settings, trial, backup | `assets/screenshots/07-settings.jpg` |
-| Questions about alerts, how to set a reminder | `assets/screenshots/08-entry-form-alert-set.jpg` then `assets/screenshots/10-alert-config-repeat.jpg` |
-| Questions about viewing all alerts | `assets/screenshots/11-alerts-list.jpg` |
 | Confusion about Sum vs Average in summary | Show both `assets/screenshots/12-summary-sum-week.jpg` and `assets/screenshots/13-summary-avg-week.jpg` side by side |
 
 ### Screenshot Reference Table
 
 | Path | Shows |
 |------|-------|
-| `assets/screenshots/01-log-list.jpg` | Log list home screen — 4 logs, entry counts, search bar, gear/bell icons, +/Archive/Trash toolbar |
+| `assets/screenshots/01-log-list.jpg` | Log list home screen — logs, entry counts, search bar, gear icon, +/Stash/Trash toolbar |
 | `assets/screenshots/02-running-cards.jpg` | Card view — running entry with distance, route, emoji rating, weather, notes fields |
 | `assets/screenshots/03-running-table.jpg` | Table view — sortable timestamp/distance/duration columns, 10 rows |
 | `assets/screenshots/04-calories-summary.jpg` | Summary view — simple single-field (Calories) daily totals example |
 | `assets/screenshots/05-running-schema.jpg` | Schema editor — 6 fields: Distance (Number), Duration (Number), Route (Single Select), How I Felt (Rating), Weather (Single Select), Notes (Text) |
-| `assets/screenshots/06-entry-form.jpg` | Entry form mid-fill — timestamp, numbers entered, Downtown route selected, star rating set, Weather field visible below |
+| `assets/screenshots/06-entry-form.jpg` | Entry form mid-fill — timestamp, numbers entered, Downtown route selected, rating set, Weather field visible below |
 | `assets/screenshots/07-settings.jpg` | Settings screen — Trial status, Return to last log, Week starts on, Numeric precision, Backup/Restore buttons |
-| `assets/screenshots/08-entry-form-alert-set.jpg` | Entry form — Date/Time field ("Next Recital") with red bell icon and "Edit alerts" link indicating an active alert |
-| `assets/screenshots/09-alert-config-1.jpg` | Alert config sheet — Enable Alert toggle ON, Number of Alerts picker showing 1 selected, Preview with one scheduled time |
-| `assets/screenshots/10-alert-config-repeat.jpg` | Alert config sheet — 2 alerts selected, Repeating section with Minutes/Hours/Days picker, "Every 1 day" set, Preview showing 2 scheduled times labeled "(1 of 2)" and "(2 of 2)" |
-| `assets/screenshots/11-alerts-list.jpg` | Active Alerts screen — time filter tabs (All/1dy/1wk/1mo/1yr), alert card showing log name with navigation arrow, field name with red bell, scheduled date/time, countdown, and full entry context |
 | `assets/screenshots/12-summary-sum-week.jpg` | Summary — Running log, Week interval, Sum statistic: shows weekly totals (e.g. 15.2 miles, 134 min) across 4 weeks |
 | `assets/screenshots/13-summary-avg-week.jpg` | Summary — Running log, Week interval, Average statistic: same data shows per-run averages (5.1 miles, 44.7 min) — identical entries, different insight |
 
-**Version date:** March 2026
+**Version date:** July 2026
 
 ---
 
@@ -71,23 +65,22 @@ Before answering specific questions, understand these concepts — they explain 
 
 **Views**: Three ways to look at a log's entries — Cards (individual records), Table (spreadsheet-style grid), Summary (aggregated statistics over time).
 
-**Aggregatable fields**: Number, Star Rating, and Toggle — these are the only types that can be summarized in the Summary view. All other field types are excluded from aggregation.
+**Aggregatable fields**: Number, Rating, Toggle, Duration, and Distance/Pace — these are the only types that can be summarized in the Summary view. All other field types are excluded from aggregation.
 
 ---
 
 ## First Launch Experience
 
-On first launch the app shows a welcome screen with a text field and two options:
-- Enter a log name and tap **Create Log** — creates the log and immediately opens the schema editor
-- Tap **Skip for now** — goes directly to the log list
+On first launch the app shows a **welcome screen** and offers an optional **guided walkthrough**.
 
-Regardless of which option is chosen, four **sample logs** are automatically created with realistic sample data to demonstrate the app's capabilities:
-- **Example: Miscellaneous Notes** — simple single-field text log
-- **Example: Running** — rich log with 6 fields across 4 types (Number, Single Select, Star Rating, Text)
-- **Example: Piano Practice** — demonstrates Multi Select and mood tracking
-- **Example: Calories** — minimal two-field log
+The walkthrough:
+- Explains the difference between a **Log** (the container with a schema) and an **Entry** (a single record)
+- Runs a short **live demo** of building a schema and recording a first entry
+- At the end, offers to either create a ready-made sample log called **"My Morning Routine"** or start from scratch with the user's own log
 
-Sample logs can be explored, edited, or deleted just like any user-created log. They are labeled "Example: ..." to distinguish them.
+The walkthrough can be **replayed at any time** from **Settings → Help → Getting Started**.
+
+If the user chooses the sample, the single **"My Morning Routine"** log is created with realistic sample data so they can explore cards, table, summary, and the schema editor. It can be explored, edited, or deleted just like any user-created log.
 
 ---
 
@@ -111,12 +104,10 @@ The log list is the main screen users return to when navigating between logs or 
 
 **Gear icon** (top-left): Opens Settings
 
-**Bell icon** (top-right): Opens Active Alerts. Shows a red badge with the count of upcoming alerts when any exist.
-
 **+ button** (top-right): Creates a new log
 
 **Bottom toolbar**:
-- Left: Archive button (box with arrow) — opens the Archive view
+- Left: Stash button (box with arrow) — opens the Stash view
 - Right: Trash button — opens the Trash view
 
 ### Accessing Log Actions
@@ -126,7 +117,7 @@ Tap the **"..."** button on a log row, OR long-press the row itself. Both open t
 - Duplicate
 - Backup (exports .loghound file for this log)
 - CSV Export
-- Archive
+- Stash
 - Delete
 
 Tapping the log row itself (not the "..." button) navigates into the log detail view.
@@ -144,7 +135,7 @@ The search bar searches all active logs at once. Results appear as a list showin
 
 Tapping a search result navigates to that log and scrolls to that entry in card view.
 
-Search does not search archived or trashed logs.
+Search does not search stashed or trashed logs.
 
 ---
 
@@ -162,7 +153,7 @@ The schema editor opens immediately so the user can add fields. The log exists e
 
 "..." menu → **Rename** → edit the name → confirm.
 
-Will reject the new name if it duplicates another active log's name. The name does not need to be unique across archived or trashed logs.
+Will reject the new name if it duplicates another active log's name. The name does not need to be unique across stashed or trashed logs.
 
 ### Duplicating a Log
 
@@ -182,17 +173,17 @@ Available from the log detail "..." menu (not the log list). Creates a brand new
 
 **Difference from Duplicate**: Duplicate always uses the existing schema as-is and optionally copies entries. Copy Fields always starts with no entries and opens the schema editor for customization.
 
-### Archiving a Log
+### Stashing a Log
 
-"..." menu → **Archive**.
+"..." menu → **Stash**.
 
-The log disappears from the active log list and moves to the Archive. All data is fully preserved. Archived logs do not appear in search results.
+The log disappears from the active log list and moves to the Stash. All data is fully preserved. Stashed logs do not appear in search results.
 
-To access archived logs: tap the **Archive button** (bottom-left toolbar) on the log list.
+To access stashed logs: tap the **Stash button** (bottom-left toolbar) on the log list.
 
-To restore: open the Archive → tap the log → tap **Restore**. If the name conflicts with an existing active log, a **Name Conflict sheet** appears asking the user to choose a new name.
+To restore: open the Stash → tap the log → tap **Restore**. If the name conflicts with an existing active log, a **Name Conflict sheet** appears asking the user to choose a new name.
 
-**Archive vs Delete**: Archive is for logs you're done with but want to keep. Delete (trash) is for logs you no longer need, with a 30-day safety window before permanent deletion.
+**Stash vs Delete**: Stash is for logs you're done with but want to keep. Delete (trash) is for logs you no longer need, with a 30-day safety window before permanent deletion.
 
 ### Deleting a Log (Sending to Trash)
 
@@ -212,10 +203,6 @@ The Trash view shows each log with a countdown ("28 days remaining"). From here 
 From the log detail "..." menu → **Delete All Entries**. Permanently deletes every entry in the log but leaves the log itself and its schema intact. Requires confirmation showing the exact entry count. This cannot be undone.
 
 **Use case**: Starting fresh with a new period of tracking while keeping the same schema.
-
-### What Happens to Alerts When a Log is Deleted/Archived?
-
-Alerts associated with entries in a deleted or archived log are cancelled. They will no longer appear in the Active Alerts view and iOS notifications will not fire.
 
 ---
 
@@ -368,13 +355,13 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 **What it stores**: Zero or more selected options from a predefined list.
 
-**Entry form**: A list of checkboxes. Multiple can be checked. A count of selected options is shown. Can be left empty (no options checked).
+**Entry form**: A **chip-style** picker — options appear as tappable chips, and tapping a chip toggles it on or off. Multiple chips can be selected at once. A count of selected options is shown. Can be left empty (no chips selected).
 
 **Option management**: Same as Single Select — options can be added, renamed, reordered, deleted, or deprecated. Deprecated options are hidden from new entries but preserved in existing ones.
 
 **Display in views**:
-- Cards: shown as a comma-separated list of selected options
-- Table: shown as a comma-separated list (may truncate in narrow columns)
+- Cards: selected options shown as **chips**
+- Table: selected options shown as chips (may truncate in narrow columns)
 - Summary: Multi Select does not appear in Summary view
 
 **When to use**: Tags, multiple applicable categories, symptoms (multiple can be present at once), focus areas, ingredients, skills practiced.
@@ -388,15 +375,12 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 **Entry form**: Shows pickers for date and/or time based on the configured mode. Always displays:
 - The selected date/time value
 - A **relative time indicator** alongside the value (e.g., "2 hours ago", "in 3 days", "yesterday", "in 4 wk 5 days")
-- A **Clear** button — removes the value entirely (field becomes empty; any active alert is also removed)
+- A **Clear** button — removes the value entirely (field becomes empty)
 - A **Now** button — instantly sets the field to the current date and time
-- An **"Edit alerts"** link (or bell icon) — visible when a date is set; opens the alert configuration sheet
 
 **Configuration options**:
 - **Picker mode**: Date only, Time only, or Date & Time
 - **Default time offset**: if set, when creating a new entry this field auto-populates to (entry timestamp) + (offset). E.g., an offset of +1 hour means the field defaults to 1 hour after the entry was created. Useful for "next scheduled time" patterns.
-
-**When a date is set and an alert is active**: The field shows a **red bell icon** next to the field label and an "Edit alerts" link.
 
 **Display in views**:
 - Cards: shown as formatted date/time or relative time
@@ -407,17 +391,34 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 ---
 
-### 7. Star Rating
+### 7. Duration
+
+**What it stores**: A span of time in hours, minutes, and seconds, with an optional running timer you can start and stop. Good for workouts, activities, or anything you time.
+
+**Entry form**: Hours/minutes/seconds pickers, plus an optional built-in timer that can be started and stopped to capture elapsed time directly.
+
+**Can be empty**: A duration of zero (or no value entered) is treated as empty/unfilled.
+
+**Display in views**:
+- Cards: shown as a formatted time value (e.g., "1:24:30")
+- Table: shown as a formatted time value
+- Summary: participates in Sum, Average, Count — aggregates the underlying time value
+
+**When to use**: Workouts, activities, tasks, or anything where you want to record how long something took.
+
+---
+
+### 8. Rating
 
 **What it stores**: A numeric rating from 1 to the configured maximum (1–5).
 
 **Entry form**: Tappable emoji icons arranged horizontally. Tapping a position sets the rating. The selected emoji is repeated to visually represent the value (e.g., 💪💪💪 for a rating of 3).
 
-**Can be empty**: No star tapped = empty/unfilled.
+**Can be empty**: No emoji tapped = empty/unfilled.
 
 **Configuration options**:
-- **Maximum stars**: 1 to 5 (default 5)
-- **Emoji**: any single emoji, shown as the rating symbol. Examples: ⭐, 💪, 🎵, 😊, 🔥. Default: ⭐
+- **Maximum**: 1 to 5 (default 5)
+- **Emoji**: the rating symbol is **customizable** — any single emoji (not necessarily a star). Examples: ⭐, 💪, 🎵, 😊, 🔥. Default: ⭐
 
 **Display in views**:
 - Cards: repeated emoji (e.g., 🎵🎵🎵🎵 for 4)
@@ -428,7 +429,7 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 ---
 
-### 8. Location
+### 9. Location
 
 **What it stores**: GPS coordinates — latitude and longitude, and optionally altitude and accuracy values.
 
@@ -453,6 +454,21 @@ To deprecate an option: edit the field in the schema editor → long-press the o
 
 ---
 
+### 10. Distance/Pace
+
+**What it stores**: Uses GPS to track distance traveled plus pace and speed. Records as three parts — distance, elapsed time, and pace/speed — ideal for runs, walks, rides, and hikes.
+
+**Entry form**: A GPS-based tracking control that measures distance as the device moves. When recording finishes, the field holds three related values: total distance (with unit), elapsed time, and the resulting pace/speed (with unit).
+
+**Display in views**:
+- Cards: shown as distance plus pace/speed, with elapsed time
+- Table: shown as the recorded distance and pace/speed values
+- Summary: participates in Sum, Average, Count — aggregates the underlying values
+
+**When to use**: Runs, walks, rides, hikes — any activity where GPS distance, time, and pace/speed matter.
+
+---
+
 ## Field Configuration Reference
 
 Every field type shares these configuration options:
@@ -467,7 +483,7 @@ Notes:
 - Toggle fields cannot be Required (they always have a value)
 - For Number fields: 0 counts as a valid value and satisfies Required
 - For Date/Time fields: a date must be set (Clear removes the value and makes the field empty again)
-- For Star Rating: at least one star must be tapped
+- For Rating: at least one emoji must be tapped
 
 ### Clonable
 When enabled, this field's value is **automatically copied** from the source entry when duplicating.
@@ -506,7 +522,7 @@ If the user starts filling an entry form and dismisses it without saving, the in
 - Drafts survive app backgrounding and device restarts
 - A draft is cleared when the entry is saved or when the user explicitly discards it
 - Only one draft per log exists at a time
-- Drafts are per-log — the draft for Running is separate from the draft for Piano Practice
+- Drafts are per-log — the draft for one log is separate from the draft for another
 
 If a user reports seeing a form pre-filled with old data, it's because a draft was saved from a previous session.
 
@@ -602,7 +618,7 @@ Entries as rows. Columns for timestamp (always first) and each field in schema o
 
 Aggregates the log's numeric data over time intervals.
 
-**Which fields appear**: Only **Number**, **Star Rating**, and **Toggle** fields. Text, Single Select, Multi Select, Date/Time, and Location are excluded. If the log has no aggregatable fields, a message says so and the view is empty.
+**Which fields appear**: Only **Number**, **Rating**, **Toggle**, **Duration**, and **Distance/Pace** fields. Text, Single Select, Multi Select, Date/Time, and Location are excluded. If the log has no aggregatable fields, a message says so and the view is empty.
 
 **Two pickers at top**:
 
@@ -650,7 +666,7 @@ Results appear as a list. Each result shows:
 
 Tapping a result navigates to that log in card view and highlights the matching entry.
 
-Search does **not** search archived or trashed logs.
+Search does **not** search stashed or trashed logs.
 
 Clearing the search field (tap × in search bar) returns to the full log list.
 
@@ -673,7 +689,7 @@ Tap the **"≡ No Filters"** or **"≡ Filters Active"** button in card, table, 
 
 #### Filter Operators by Field Type
 
-**Number and Star Rating:**
+**Number and Rating:**
 - equals (=)
 - not equals (≠)
 - greater than (>)
@@ -730,95 +746,6 @@ Tap the **"≡ No Filters"** or **"≡ Filters Active"** button in card, table, 
 
 ---
 
-## Alerts and Notifications
-
-> 📸 `assets/screenshots/08-entry-form-alert-set.jpg` — Where alerts are configured in the entry form.
-> 📸 `assets/screenshots/09-alert-config-1.jpg` — Alert config with 1 alert.
-> 📸 `assets/screenshots/10-alert-config-repeat.jpg` — Alert config with 2 alerts and repeat interval.
-> 📸 `assets/screenshots/11-alerts-list.jpg` — Active Alerts list.
-
-### Fundamental Concept
-
-An alert fires an iOS notification at the exact date and time stored in a **Date/Time field** in a specific entry. Alerts are configured per-entry — each entry independently decides whether its Date/Time field should trigger an alert and how many.
-
-The same "Next Appointment" field in Entry A and Entry B can have completely different alert settings (or none at all).
-
-### Requirements
-
-1. The log must have at least one **Date/Time** field in its schema
-2. That field must be set to a **future** date and time (past dates cannot trigger alerts)
-3. iOS **notification permission** must be granted. The app prompts on first alert save. If denied, the user must go to iOS Settings → LogHound → Notifications to enable.
-
-### Setting Up an Alert
-
-**Step 1**: Ensure the log has a Date/Time field. If not, open the schema editor ("..." → Edit Fields) and add one. Recommended picker mode: "Date & Time" for precise scheduling.
-
-**Step 2**: Create or edit an entry. Set the Date/Time field to a future date and time.
-
-**Step 3**: Tap **"Edit alerts"** (appears next to the Date/Time field when a date is entered) or the bell icon.
-
-**Step 4**: In the alert configuration sheet:
-- Toggle **Enable Alert** ON
-- Choose **Number of Alerts**: 1, 2, 3, or 4 using the segmented picker
-- If 2 or more alerts: a **Repeating** section appears with:
-  - A picker: Minutes / Hours / Days
-  - A number: Every [N] [unit]
-  - Alert 1 fires at the stored date/time; Alert 2 fires at that time + 1 interval; Alert 3 at +2 intervals; Alert 4 at +3 intervals
-- Check the **Preview** section: it lists every scheduled notification time, labeled "(1 of 2)", "(2 of 2)", etc. Verify these are correct before saving.
-- Tap **Save**
-
-**Step 5**: The entry form now shows the Date/Time field with a **red bell icon** next to the label and a countdown ("Next Recital in 4 wk 5 days"), confirming the alert is active.
-
-### Alert Configuration Details
-
-**Number of alerts**: 1–4. If 1, no repeat interval is needed. If >1, the repeat interval determines the gap between successive alerts.
-
-**Repeat interval ranges**:
-- Minutes: 1 to 59
-- Hours: 1 to 23
-- Days: 1 (exactly one day between alerts)
-
-**Interval example**: Date = April 28 at 9:57 AM, 2 alerts, every 1 day → Alert 1 fires April 28 at 9:57 AM, Alert 2 fires April 29 at 9:57 AM.
-
-**Preview**: Always check this before saving. It shows the exact times all alerts will fire.
-
-### Disabling an Alert
-
-Open the alert config (tap "Edit alerts" on the entry form) → toggle **Enable Alert** OFF → Save. The red bell icon disappears.
-
-Alternatively, tapping **Clear** on the Date/Time field removes the date entirely, which also removes the alert.
-
-### Alert Behavior
-
-- Alerts fire as iOS notifications even when the app is closed
-- Tapping the notification opens LogHound and navigates directly to the relevant entry
-- Alerts are scheduled locally — no internet connection required
-- If the app is reinstalled, alerts may need to be re-saved to reschedule them
-
-### Editing an Entry After Setting an Alert
-
-If the user edits an entry and changes the Date/Time value, the alert is **not automatically updated**. The alert still fires at the originally scheduled time. To update the alert, the user must re-open the alert config ("Edit alerts") and tap Save again — this reschedules the alert based on the new date.
-
-### Active Alerts View
-
-> 📸 `assets/screenshots/11-alerts-list.jpg`
-
-From the log list, tap the **bell icon** (shows a red badge with the count of pending alerts).
-
-Shows all upcoming alerts across all logs.
-
-**Time filter tabs**: All, 1dy (next 24 hours), 1wk (next 7 days), 1mo (next month), 1yr (next year).
-
-**Each alert card shows**:
-- Log name with a **→ arrow** (tap to navigate to that log and entry)
-- Field name with red bell icon and relative countdown ("in 4 wk 5 days")
-- The exact scheduled date and time
-- All field values of that entry below (for context — the full entry is visible in the card)
-
-Alerts are sorted **earliest first** within each time filter.
-
----
-
 ## Exporting and Backup
 
 LogHound has two distinct data output features — they serve different purposes and are accessed from different places:
@@ -845,10 +772,12 @@ Available from:
 - **Number**: numeric value, decimal places as stored
 - **Toggle**: "true" or "false"
 - **Single Select**: the option text, or empty if not set
-- **Multi Select**: comma-separated list of selected option texts, or empty
+- **Multi Select**: selected option texts joined with " | " by default, or empty
 - **Date/Time**: formatted date/time or empty
-- **Star Rating**: numeric value (e.g., 3), or empty
+- **Duration**: the time value (e.g., "1:24:30"), or empty
+- **Rating**: numeric value (e.g., 3), or empty
 - **Location**: "latitude, longitude" or extended format if altitude/accuracy included, or empty
+- **Distance/Pace**: exported as **three columns** — distance (with unit), time in seconds, and pace/speed (with unit)
 
 **Share Sheet**: After generating, the iOS Share Sheet opens. Available destinations: AirDrop, email, Files app, iCloud Drive, third-party apps that accept files.
 
@@ -871,7 +800,7 @@ Available from:
 - All field configurations (options lists, deprecated options, etc.)
 - Log metadata (name, sort order)
 
-**Archived and trashed logs**: Are not available in the backup selection — only active logs are shown.
+**Stashed and trashed logs**: Are not available in the backup selection — only active logs are shown.
 
 ### Restoring from a .loghound File
 
@@ -885,7 +814,7 @@ Available from:
 
 **Result**: Restored logs are **added** to the active log list alongside existing logs. No existing logs are overwritten or deleted.
 
-**Archived/trashed logs**: If a user's active log list includes archived logs they want to restore from backup — they should restore from backup and the imported log will be active. The archived version remains in Archive separately.
+**Stashed/trashed logs**: If a user's active log list includes stashed logs they want to restore from backup — they should restore from backup and the imported log will be active. The stashed version remains in the Stash separately.
 
 ---
 
@@ -933,7 +862,7 @@ Example: A stored value of 5.2847... displayed at precision 1 shows "5.3", at pr
 
 **Reset All Data** (red destructive button): A two-step confirmation leads to permanently and irreversibly deleting:
 - Every active log and all its entries
-- Every archived log
+- Every stashed log
 - Every trashed log
 - All settings (reset to defaults)
 - All drafts
@@ -960,7 +889,6 @@ The app enters **read-only mode**.
 - View all logs, entries, cards, table, summary
 - Search across all logs
 - Access Settings
-- View Active Alerts (already scheduled alerts may still fire)
 
 **Blocked** (shows paywall sheet when attempted):
 - Create a new log
@@ -968,7 +896,7 @@ The app enters **read-only mode**.
 - Delete any entry
 - Add, edit, or delete schema fields
 - Duplicate a log or entry
-- Archive, delete, restore any log
+- Stash, delete, restore any log
 - CSV Export
 - .loghound Backup
 - Reset All Data
@@ -1010,13 +938,10 @@ A: LogHound is an iOS app and runs on iPad via iOS compatibility. The interface 
 A: No. There is no cloud sync. Data lives only on the device where it was entered. To move data between devices, use the .loghound backup and restore workflow.
 
 **Q: Why doesn't my field appear in Summary view?**
-A: Summary view only shows Number, Star Rating, and Toggle fields. Text, Single Select, Multi Select, Date/Time, and Location fields are excluded. If the log has none of those three types, Summary view shows an empty state.
+A: Summary view only shows Number, Rating, Toggle, Duration, and Distance/Pace fields. Text, Single Select, Multi Select, Date/Time, and Location fields are excluded. If the log has none of those aggregatable types, Summary view shows an empty state.
 
 **Q: Why is the "..." log action menu showing fewer options than expected?**
 A: CSV Export is disabled when the log has no entries. All other actions are always available.
-
-**Q: My notification didn't fire — what should I check?**
-A: (1) iOS Settings → LogHound → Notifications — ensure "Allow Notifications" is ON. (2) The alert was set for a future time — past-dated alerts are skipped silently. (3) The date in the entry matches what the user expected — tap "Edit alerts" to verify the preview.
 
 **Q: I see old values pre-filled in a new entry form — is this a bug?**
 A: No. This is the **draft** feature. The user previously started filling an entry, dismissed the form without saving, and the values were saved as a draft. To clear the draft, they can tap Cancel → Discard (if prompted) or just save the form.
@@ -1029,9 +954,6 @@ A: Options may have been **deprecated**. Deprecated options are hidden from the 
 
 **Q: I bought LogHound on my old phone but it shows "Trial Expired" on my new phone.**
 A: Tap **Restore Purchases** on the paywall or in Settings. This re-validates the purchase with Apple's servers and unlocks the app.
-
-**Q: How do I see all my alerts in one place?**
-A: Tap the **bell icon** on the log list (top area). If there are no alerts, the icon may not have a badge. The Active Alerts view shows all upcoming alerts across all logs with time filter tabs.
 
 **Q: Can I track something that happens multiple times a day?**
 A: Yes. Just create multiple entries in the same log on the same day. Each entry has its own timestamp. Filters and Summary view can aggregate or filter by date range.
@@ -1054,7 +976,7 @@ These are recommended field configurations for common tracking needs. Share thes
 ### Medication / Supplement Log
 - **Medication** — Single Select (options: each medication name)
 - **Dose** — Number (allow decimals: off, for whole pill counts) or Text (for "500mg")
-- **Time Taken** — Date/Time (picker: Date & Time; set alert for next dose)
+- **Time Taken** — Date/Time (picker: Date & Time)
 - **Side Effects** — Multi Select (options: nausea, headache, drowsiness, none, etc.) or Text
 - **Notes** — Text
 
@@ -1062,7 +984,7 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Exercise Type** — Single Select (options: Running, Cycling, Weights, Yoga, etc.)
 - **Duration** — Number (minutes, allow decimals: off)
 - **Distance** — Number (miles/km, allow decimals: on)
-- **Intensity** — Star Rating (emoji: 🔥, max: 5)
+- **Intensity** — Rating (emoji: 🔥, max: 5)
 - **Heart Rate** — Number (bpm, allow decimals: off)
 - **Notes** — Text
 
@@ -1070,21 +992,21 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Habit** — Single Select (if tracking multiple habits in one log) OR use a separate log per habit
 - **Completed** — Toggle (this is the key field; Summary → Sum + Week shows total completions)
 - **Duration** — Number (minutes, if tracking time-based habits)
-- **Quality** — Star Rating (if tracking quality of completion)
+- **Quality** — Rating (if tracking quality of completion)
 - **Notes** — Text
 
 ### Sleep Log
 - **Bedtime** — Date/Time (time only)
 - **Wake time** — Date/Time (time only)
 - **Hours slept** — Number (allow decimals: on, e.g., 7.5)
-- **Quality** — Star Rating (emoji: 😴 or ⭐)
+- **Quality** — Rating (emoji: 😴 or ⭐)
 - **Dreams** — Toggle
 - **Notes** — Text
 
 ### Mood / Mental Health Diary
-- **Mood** — Star Rating (emoji: 😊 or ❤️, max: 5)
-- **Energy** — Star Rating (emoji: ⚡, max: 5)
-- **Anxiety** — Star Rating (emoji: 😰, max: 5)
+- **Mood** — Rating (emoji: 😊 or ❤️, max: 5)
+- **Energy** — Rating (emoji: ⚡, max: 5)
+- **Anxiety** — Rating (emoji: 😰, max: 5)
 - **Activities** — Multi Select (options: exercise, socializing, work, nature, etc.)
 - **Sleep hours** — Number (allow decimals: on)
 - **Notes** — Text
@@ -1094,13 +1016,13 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Food** — Text
 - **Calories** — Number (allow decimals: off)
 - **Protein** — Number (grams, allow decimals: off)
-- **Satisfaction** — Star Rating (emoji: 😋)
+- **Satisfaction** — Rating (emoji: 😋)
 
 ### Reading Log
 - **Title** — Text (required)
 - **Author** — Text
 - **Genre** — Single Select (Fiction, Non-fiction, Biography, etc.)
-- **Rating** — Star Rating (emoji: ⭐, max: 5)
+- **Rating** — Rating (emoji: ⭐, max: 5)
 - **Pages read** — Number (allow decimals: off)
 - **Started** — Date/Time (date only)
 - **Finished** — Date/Time (date only)
@@ -1111,12 +1033,12 @@ These are recommended field configurations for common tracking needs. Share thes
 - **Mileage** — Number (allow decimals: off)
 - **Cost** — Number (allow decimals: on, for dollars/cents)
 - **Shop** — Text or Single Select
-- **Next Service Due** — Date/Time (date only; set an alert for reminder)
+- **Next Service Due** — Date/Time (date only)
 - **Notes** — Text
 
 ### Symptom Diary
 - **Symptom** — Multi Select (options: headache, fatigue, nausea, pain, brain fog, etc.)
-- **Severity** — Star Rating (emoji: 🩺 or 😣, max: 5)
+- **Severity** — Rating (emoji: 🩺 or 😣, max: 5)
 - **Duration** — Number (hours, allow decimals: on)
 - **Possible Trigger** — Multi Select (stress, food, sleep, weather, etc.)
 - **Medication taken** — Toggle
@@ -1125,9 +1047,9 @@ These are recommended field configurations for common tracking needs. Share thes
 ### Plant / Garden Log
 - **Plant** — Single Select or Text
 - **Action** — Single Select (Watered, Fertilized, Pruned, Repotted, etc.)
-- **Health** — Star Rating (emoji: 🌿, max: 5)
+- **Health** — Rating (emoji: 🌿, max: 5)
 - **Notes** — Text
-- **Next action** — Date/Time (date only; set alert as a reminder)
+- **Next action** — Date/Time (date only)
 
 ---
 
@@ -1153,16 +1075,13 @@ Help users avoid losing data. These are the scenarios that can cause permanent d
 
 | Problem | Likely Cause | Solution |
 |---------|-------------|----------|
-| Data seems missing | Log was archived or deleted | Check Archive (bottom-left toolbar) and Trash (bottom-right toolbar) |
-| Notifications not arriving | iOS permission denied | iOS Settings → LogHound → Notifications → Allow |
-| Alert fired at wrong time | Alert not updated after editing the date | Open entry → Edit alerts → Save again to reschedule |
+| Data seems missing | Log was stashed or deleted | Check Stash (bottom-left toolbar) and Trash (bottom-right toolbar) |
 | Form pre-filled with old data | Draft was saved from previous session | Fill correctly and Save, or tap Cancel → Discard Draft |
 | Save button greyed out | Required field not filled | Look for field with red asterisk (*) |
-| Field not in Summary view | Wrong field type | Only Number, Star Rating, Toggle appear in Summary |
+| Field not in Summary view | Wrong field type | Only Number, Rating, Toggle, Duration, Distance/Pace appear in Summary |
 | Option not in Select picker | Option was deprecated | Check schema editor → field → options list for deprecated options |
 | Purchased but trial expired message | Purchase not validated on this device | Tap Restore Purchases (paywall or Settings) |
-| Log not in active list | Log was archived | Check Archive view |
-| Alert not available to set | Date is in the past | Change the Date/Time field to a future value |
+| Log not in active list | Log was stashed | Check Stash view |
 | Restore overwrote my log | It didn't — restore adds logs, never overwrites | The original and restored logs coexist (restored may be renamed) |
-| Summary showing no data | No Number/Rating/Toggle fields | Add one of those field types to the schema |
+| Summary showing no data | No aggregatable fields | Add a Number, Rating, Toggle, Duration, or Distance/Pace field to the schema |
 | CSV export greyed out | Log has no entries | Add at least one entry first |

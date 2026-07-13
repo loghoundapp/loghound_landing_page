@@ -150,7 +150,7 @@
                     <span class="text-2xl flex-shrink-0" role="img" aria-label="Medication">&#x1F48A;</span>
                     <div>
                         <h3 class="font-semibold mb-1">Medication Log</h3>
-                        <p class="text-slate-400 text-sm">Track doses with date/time alerts for reminders.</p>
+                        <p class="text-slate-400 text-sm">Track doses, times taken, and side effects in one place.</p>
                     </div>
                 </div>
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
@@ -205,14 +205,14 @@
                         <span class="text-teal-400 font-bold text-xl">2</span>
                     </div>
                     <h3 class="font-semibold text-lg mb-2">Add Fields</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Choose from 8 field types to match what you're tracking.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Choose from 10 field types to match what you're tracking.</p>
                 </div>
                 <div class="fade-in text-center">
                     <div class="w-14 h-14 bg-teal-500/15 border border-teal-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
                         <span class="text-teal-400 font-bold text-xl">3</span>
                     </div>
                     <h3 class="font-semibold text-lg mb-2">Start Tracking</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Record entries, view data, set alerts, and export anytime.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Record entries, view summaries, and export anytime.</p>
                 </div>
             </div>
         </div>
@@ -249,7 +249,7 @@
                         </svg>
                     </div>
                     <h3 class="text-lg font-semibold mb-2">Custom Fields</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">8 field types to build any log: text, number, toggle, single/multi select, date/time, rating, and location.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">10 field types to build any log: text, number, toggle, single/multi select, date/time, duration, rating, location, and distance/pace.</p>
                     <p class="text-teal-400 text-xs mt-3 group-hover:text-teal-300 transition-colors">See it in action →</p>
                 </div>
 
@@ -265,16 +265,16 @@
                     <p class="text-teal-400 text-xs mt-3 group-hover:text-teal-300 transition-colors">See it in action →</p>
                 </div>
 
-                <!-- Alerts & Reminders -->
-                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6 hover:border-teal-500/30 transition-colors cursor-pointer group" onclick="openModal('alerts')">
+                <!-- GPS & Distance -->
+                <div class="fade-in bg-slate-800/40 border border-slate-700/40 rounded-2xl p-6">
                     <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Alerts & Reminders</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Set notifications on date/time fields with configurable repeat intervals. Never miss a tracking window.</p>
-                    <p class="text-teal-400 text-xs mt-3 group-hover:text-teal-300 transition-colors">See it in action →</p>
+                    <h3 class="text-lg font-semibold mb-2">GPS &amp; Distance</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Capture your location, or track distance and pace live with GPS — ideal for runs, walks, rides, and hikes.</p>
                 </div>
 
                 <!-- Search & Filters -->
@@ -473,9 +473,9 @@
     var modalData = {
         'custom-fields': {
             title: 'Custom Fields',
-            description: 'Choose from 8 field types to build exactly the log you need. Text for notes, Number for measurable values, Toggle for yes/no, Single or Multi Select for categorizing, Date/Time for scheduling, Star Rating for subjective scores, and Location to capture where you were.',
+            description: 'Choose from 10 field types to build exactly the log you need. Text for notes, Number for measurable values, Toggle for yes/no, Single or Multi Select for categorizing, Date/Time for scheduling, Duration for timing activities, Rating for subjective scores, Location to capture where you were, and Distance/Pace to track runs and rides with GPS.',
             image: 'assets/screenshots/feature-custom-fields.jpg',
-            alt: 'LogHound Add Field screen showing all 8 field types in a grid'
+            alt: 'LogHound Add Field screen showing all field types in a grid'
         },
         'multiple-views': {
             title: 'Multiple Views',
@@ -485,12 +485,6 @@
                 { image: 'assets/screenshots/03-running-table.jpg', label: 'Table — compact overview' },
                 { image: 'assets/screenshots/12-summary-sum-week.jpg', label: 'Summary — weekly totals' }
             ]
-        },
-        'alerts': {
-            title: 'Alerts & Reminders',
-            description: 'Attach alerts to any Date/Time field. Set how many notifications you want and how often they repeat — by minutes, hours, or days. A live preview shows you exactly when each notification will fire before you save.',
-            image: 'assets/screenshots/feature-alerts.jpg',
-            alt: 'LogHound alert configuration screen showing repeat interval and notification preview'
         },
         'filters': {
             title: 'Search & Filters',
