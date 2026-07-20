@@ -3,24 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LogHound — Track Anything. Your Way.</title>
-    <meta name="description" content="Create custom tracking logs with the fields you need. No templates, no limitations — just your data, organized your way.">
-    <meta name="keywords" content="iOS, tracking app, custom logs, habit tracker, fitness log, journal, SwiftUI">
+    <title>LogHound — Custom Tracking Logs for iPhone | Private, No Subscription</title>
+    <meta name="description" content="Build custom tracking logs with exactly the fields you need. Every entry stays on your iPhone — no account, no cloud sync. One-time purchase, no subscription.">
+    <link rel="canonical" href="https://loghound.app/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="LogHound — Track Anything. Your Way.">
-    <meta property="og:description" content="Create custom tracking logs with the fields you need. No templates, no limitations — just your data, organized your way.">
+    <meta property="og:title" content="LogHound — Custom Tracking Logs for iPhone">
+    <meta property="og:description" content="Build custom tracking logs with exactly the fields you need. Everything stays on your iPhone — no account, no cloud. One-time purchase, no subscription.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://loghound.app">
     <meta property="og:image" content="https://loghound.app/assets/AppIcon.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LogHound — Track Anything. Your Way.">
-    <meta name="twitter:description" content="Create custom tracking logs with the fields you need. No templates, no limitations.">
+    <meta name="twitter:title" content="LogHound — Custom Tracking Logs for iPhone">
+    <meta name="twitter:description" content="Custom tracking logs with exactly the fields you need. Stays on your iPhone. One-time purchase, no subscription.">
 
     <!-- Favicon placeholder -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%230d9488'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white'>🐾</text></svg>">
+
+    <!-- Structured data: machine-readable facts (price, platform, privacy posture) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "LogHound",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "iOS 18.0 or later",
+        "description": "Build custom tracking logs with exactly the fields you need. Every entry stays on your iPhone — no account, no cloud sync, no analytics. One-time purchase, no subscription.",
+        "url": "https://loghound.app",
+        "image": "https://loghound.app/assets/AppIcon.png",
+        "offers": {
+            "@type": "Offer",
+            "price": "9.99",
+            "priceCurrency": "USD",
+            "category": "One-time purchase"
+        },
+        "featureList": [
+            "10 custom field types including duration, rating, location, and GPS distance/pace",
+            "Card, table, and summary views with sums, averages, and counts",
+            "Full-text search and reusable per-log filters",
+            "CSV export and full device backup",
+            "All data stored on device with no account or cloud sync"
+        ]
+    }
+    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -64,6 +91,7 @@
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#features" class="text-sm text-slate-400 hover:text-white transition-colors">Features</a>
                     <a href="#use-cases" class="text-sm text-slate-400 hover:text-white transition-colors">Use Cases</a>
+                    <a href="#examples" class="text-sm text-slate-400 hover:text-white transition-colors">Examples</a>
                     <a href="#pricing" class="text-sm text-slate-400 hover:text-white transition-colors">Pricing</a>
                     <a href="#help" class="text-sm text-slate-400 hover:text-white transition-colors">Help</a>
                     <a href="#" class="inline-flex items-center gap-2 bg-white text-slate-900 text-sm font-semibold px-4 py-2 rounded-full hover:bg-slate-100 transition-colors">
@@ -86,6 +114,7 @@
             <div class="px-4 py-4 space-y-3">
                 <a href="#features" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Features</a>
                 <a href="#use-cases" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Use Cases</a>
+                <a href="#examples" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Examples</a>
                 <a href="#pricing" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Pricing</a>
                 <a href="#help" class="block text-sm text-slate-400 hover:text-white transition-colors py-2">Help</a>
                 <a href="#" class="inline-flex items-center gap-2 bg-white text-slate-900 text-sm font-semibold px-4 py-2 rounded-full hover:bg-slate-100 transition-colors mt-2">
@@ -106,25 +135,41 @@
                     Log<span class="text-teal-400">Hound</span>
                 </h1>
                 <p class="text-2xl sm:text-3xl font-semibold text-slate-200 mb-4">Track anything. Your way.</p>
-                <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Create custom tracking logs with the fields you need. No templates, no limitations — just your data, organized your way.
+                <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-7 leading-relaxed">
+                    Build custom tracking logs with exactly the fields you need — then keep every entry on your iPhone.
+                    <span class="text-white font-medium">No account, no cloud, and a one-time purchase instead of a subscription.</span>
                 </p>
+
+                <!-- Differentiator pills -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 mb-10">
+                    <span class="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/25 text-teal-300 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 00-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+                        Stays on your device
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/25 text-teal-300 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                        No account, no cloud
+                    </span>
+                    <span class="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/25 text-teal-300 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        One-time purchase
+                    </span>
+                </div>
 
                 <!-- App Store Button -->
                 <a href="#" class="inline-flex items-center gap-3 bg-white text-slate-900 font-semibold px-7 py-3.5 rounded-full hover:bg-slate-100 transition-colors text-base shadow-lg shadow-white/10">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                     Download on the App Store
                 </a>
-                <p class="mt-4 text-sm text-slate-500 flex items-center justify-center gap-1.5">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-                    All data stays on your device. No accounts, no cloud.
+                <p class="mt-4 text-sm text-slate-500">
+                    Free for 30 days. Requires iPhone with iOS 18 or later.
                 </p>
             </div>
 
             <!-- Device Mockup -->
             <div class="fade-in mt-16 mx-auto max-w-xs">
                 <div class="bg-slate-800/60 border border-slate-700/50 rounded-[2.5rem] p-3 shadow-2xl shadow-teal-900/20">
-                    <img src="assets/screenshots/02-running-cards.jpg" alt="LogHound card view showing a morning-routine log entry with water, stretches, reading time, and start time" class="rounded-[2rem] w-full">
+                    <img src="assets/screenshots/01-log-list.jpg" alt="LogHound log list showing separate logs for Morning Runs, Sleep, Espresso, Migraines, Piano Practice, and Garden, each with its own entry count" width="736" height="1600" class="rounded-[2rem] w-full">
                 </div>
             </div>
         </div>
@@ -135,29 +180,29 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">Built for the way you track.</h2>
-                <p class="text-slate-400 text-lg">Whatever you need to log, LogHound adapts.</p>
+                <p class="text-slate-400 text-lg">Whatever you need to log, LogHound adapts — and it comes with six ready-made example logs you can keep, edit, or delete.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
-                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Fitness">&#x1F3CB;&#xFE0F;</span>
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Running">&#x1F3C3;</span>
                     <div>
-                        <h3 class="font-semibold mb-1">Fitness Tracking</h3>
-                        <p class="text-slate-400 text-sm">Log workouts, sets, reps, and personal records.</p>
+                        <h3 class="font-semibold mb-1">Runs &amp; Rides</h3>
+                        <p class="text-slate-400 text-sm">GPS distance and pace, plus the route, effort, and weather that made it feel the way it did.</p>
                     </div>
                 </div>
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
-                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Medication">&#x1F48A;</span>
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Espresso">&#x2615;</span>
                     <div>
-                        <h3 class="font-semibold mb-1">Medication Log</h3>
-                        <p class="text-slate-400 text-sm">Track doses, times taken, and side effects in one place.</p>
+                        <h3 class="font-semibold mb-1">Dialing In Espresso</h3>
+                        <p class="text-slate-400 text-sm">Bean, dose, grind setting, shot time, and how it actually tasted. Find the shot again next week.</p>
                     </div>
                 </div>
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
-                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Car">&#x1F697;</span>
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Sleep">&#x1F634;</span>
                     <div>
-                        <h3 class="font-semibold mb-1">Car Maintenance</h3>
-                        <p class="text-slate-400 text-sm">Record oil changes, tire rotations, and repairs.</p>
+                        <h3 class="font-semibold mb-1">Sleep</h3>
+                        <p class="text-slate-400 text-sm">Time asleep, quality, when you woke, and how rested you felt — the parts a wearable can't tell you.</p>
                     </div>
                 </div>
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
@@ -168,18 +213,73 @@
                     </div>
                 </div>
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
-                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Health">&#x1FA7A;</span>
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Pets">&#x1F43E;</span>
                     <div>
-                        <h3 class="font-semibold mb-1">Symptom Diary</h3>
-                        <p class="text-slate-400 text-sm">Track symptoms with severity ratings and notes.</p>
+                        <h3 class="font-semibold mb-1">Pet Care</h3>
+                        <p class="text-slate-400 text-sm">Weight, feeding, and daily readings for a pet that needs watching — with a CSV you can hand to anyone.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Practice">&#x1F3B9;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Practice Log</h3>
+                        <p class="text-slate-400 text-sm">Time at the instrument, the pieces you worked, and what you were focusing on that day.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Notes">&#x1F4DD;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Personal Notes</h3>
+                        <p class="text-slate-400 text-sm">Keep a private record of how you felt on a given day — severity, timing, and what you noticed. It stays on your device.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
+                    <span class="text-2xl flex-shrink-0" role="img" aria-label="Car">&#x1F697;</span>
+                    <div>
+                        <h3 class="font-semibold mb-1">Car &amp; Home Maintenance</h3>
+                        <p class="text-slate-400 text-sm">Oil changes, tire rotations, filter swaps, gutters — everything you'll otherwise swear you already did.</p>
                     </div>
                 </div>
                 <div class="fade-in flex items-start gap-4 bg-slate-800/30 border border-slate-700/30 rounded-xl p-5">
                     <span class="text-2xl flex-shrink-0" role="img" aria-label="Books">&#x1F4DA;</span>
                     <div>
                         <h3 class="font-semibold mb-1">Reading Log</h3>
-                        <p class="text-slate-400 text-sm">Record books with ratings, dates, and genre tags.</p>
+                        <p class="text-slate-400 text-sm">Books with ratings, dates, and your own genre tags — no social feed, no algorithm.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Logs -->
+    <section id="examples" class="py-20 px-4 bg-slate-800/20 scroll-mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">These are real logs, not mockups.</h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">Every example below is one of the ready-made logs LogHound offers you at setup. Keep them, rework the fields, or delete them and build your own.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+                <div class="fade-in">
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-[2rem] p-2.5 shadow-xl shadow-teal-900/10 mb-5">
+                        <img src="assets/screenshots/20-espresso-cards.jpg" alt="Espresso log entries showing bean, dose in grams, grind setting, shot time, a taste rating, and tasting notes" width="736" height="1600" loading="lazy" class="rounded-[1.6rem] w-full">
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1.5">Espresso</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Bean, dose, grind, shot time, taste, notes. Six fields you chose, so next week you can find the shot again instead of guessing.</p>
+                </div>
+                <div class="fade-in">
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-[2rem] p-2.5 shadow-xl shadow-teal-900/10 mb-5">
+                        <img src="assets/screenshots/02-running-cards.jpg" alt="Morning Runs log entries showing GPS distance, time, pace per mile, route, effort rating, weather, and notes" width="736" height="1600" loading="lazy" class="rounded-[1.6rem] w-full">
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1.5">Morning Runs</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Distance and pace come from GPS. Route, effort, weather, and how it felt come from you — the parts a watch never asks about.</p>
+                </div>
+                <div class="fade-in">
+                    <div class="bg-slate-800/60 border border-slate-700/50 rounded-[2rem] p-2.5 shadow-xl shadow-teal-900/10 mb-5">
+                        <img src="assets/screenshots/21-garden-cards.jpg" alt="Garden log entries showing plant name, watered and fertilized toggles, a saved GPS spot, and notes" width="736" height="1600" loading="lazy" class="rounded-[1.6rem] w-full">
+                    </div>
+                    <h3 class="font-semibold text-lg mb-1.5">Garden</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Which plant, watered, fertilized, and exactly where it's growing. Settles the "did I already do that?" argument with yourself.</p>
                 </div>
             </div>
         </div>
@@ -327,9 +427,17 @@
                     <span class="text-teal-400 text-sm font-medium">No subscription</span>
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">Simple pricing.</h2>
-                <p class="text-xl text-slate-300 leading-relaxed">
-                    30-day free trial. Then a one-time purchase — no subscription, ever.
+                <p class="text-xl text-slate-300 leading-relaxed mb-8">
+                    Free for 30 days. Then <span class="text-white font-semibold">$9.99 once</span> — no subscription, ever.
                 </p>
+                <div class="flex items-baseline justify-center gap-2 mb-3">
+                    <span class="text-5xl sm:text-6xl font-bold tracking-tight">$9.99</span>
+                    <span class="text-slate-400 text-lg">one time</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed max-w-md mx-auto">
+                    Unlocks every feature permanently. No account to create, nothing to renew, and no premium tier holding your own data hostage.
+                </p>
+                <p class="text-slate-500 text-sm mt-6">US pricing. Local prices vary by App Store region.</p>
             </div>
         </div>
     </section>

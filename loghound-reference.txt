@@ -898,9 +898,11 @@ Example: A stored value of 5.2847... displayed at precision 1 shows "5.3", at pr
 
 ### Privacy Section
 
-*(This section is gated behind a build feature flag and may not appear in every release.)*
+**This section is disabled in shipping builds and does not appear in the app.** LogHound sends nothing off the device: no crash reports, no analytics, no telemetry of any kind. Its App Store privacy label reads "Data Not Collected."
 
-**Share Crash Reports** (toggle): If enabled, the next time the app crashes and is reopened, anonymous technical diagnostics are sent. Includes: device model, iOS version, stack trace. Does **not** include: log names, entry content, field values, any personal information. (When this feature is enabled and a crash is detected, the launch afterward may show a one-time prompt asking whether to share the report.)
+The description below documents a dormant, feature-flagged capability that is currently switched off. If it is ever enabled in a future release, it would be opt-in and would send only anonymous technical diagnostics — device model, iOS version, stack trace — and never log names, entry content, field values, or any personal information.
+
+**Share Crash Reports** (toggle, currently disabled): When the feature flag is off, as it is today, this toggle is not shown and no crash data is collected or transmitted.
 
 ### Data Section
 
