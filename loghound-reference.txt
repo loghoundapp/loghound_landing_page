@@ -28,11 +28,11 @@ Show a screenshot proactively whenever it would help a user find something, unde
 | Path | Shows |
 |------|-------|
 | `assets/screenshots/01-log-list.jpg` | Log list home screen ("Active Logs") — the example logs (Morning Runs, Sleep, Espresso, Migraines, Piano Practice, Garden), each with its entry count, plus search bar, gear icon, and +/Stash/Trash toolbar |
-| `assets/screenshots/02-running-cards.jpg` | Card view — "Morning Runs" entries showing Run (Distance/Pace), Route (Text), Effort (Rating), Weather (Single Select), and Notes (Text) |
-| `assets/screenshots/03-running-table.jpg` | Table view — sortable Time / Water / Stretches columns for the "My Morning Routine" log |
-| `assets/screenshots/04-calories-summary.jpg` | Summary view — simple single-field (Calories) daily totals example |
-| `assets/screenshots/05-running-schema.jpg` | Schema editor ("Logging Setup") — 4 fields: Water (Number), Stretches (Multi Select), Reading (Duration), Started Work (Date/Time) |
-| `assets/screenshots/06-entry-form.jpg` | Entry form — a "My Morning Routine" entry: timestamp, Water number, Stretches chips selected, Reading duration (with timer), and Started Work date/time |
+| `assets/screenshots/02-running-cards.jpg` | Card view — "Morning Runs" entries showing Run (Distance/Pace), Route (Single Select), Effort (Rating), Weather (Single Select), and Notes (Text) |
+| `assets/screenshots/03-running-table.jpg` | Table view — the "Morning Runs" log with sortable Time / Run Distance / Run Time columns |
+| `assets/screenshots/04-runs-summary.jpg` | Summary view — "Morning Runs", Week interval, Sum statistic: weekly Run Distance and Run Time totals |
+| `assets/screenshots/05-running-schema.jpg` | Schema editor ("Logging Setup") for "Morning Runs" — 5 fields: Run (Distance/Pace), Route (Single Select), Effort (Rating), Weather (Single Select), Notes (Text) |
+| `assets/screenshots/06-entry-form.jpg` | Entry form — a new "Morning Runs" entry: timestamp, Run (Distance/Pace with GPS start), Route (Single Select), Effort (Rating), and Weather (Single Select) |
 | `assets/screenshots/07-settings.jpg` | Settings screen — License (Trial status, Buy LogHound $9.99), Return to last log, Week starts on, Numeric precision, Backup/Restore |
 | `assets/screenshots/12-summary-sum-week.jpg` | Summary — "My Morning Routine", Week interval, Sum statistic: weekly totals (Water 48, Reading 65) |
 | `assets/screenshots/13-summary-avg-week.jpg` | Summary — "My Morning Routine", Week interval, Average statistic: same data as averages (Water 24, Reading 32.5) — identical entries, different insight |
