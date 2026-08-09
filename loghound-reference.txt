@@ -34,8 +34,8 @@ Show a screenshot proactively whenever it would help a user find something, unde
 | `assets/screenshots/05-running-schema.jpg` | Schema editor ("Logging Setup") for "Morning Runs" — 5 fields: Run (Distance/Pace), Route (Single Select), Effort (Rating), Weather (Single Select), Notes (Text) |
 | `assets/screenshots/06-entry-form.jpg` | Entry form — a new "Morning Runs" entry: timestamp, Run (Distance/Pace with GPS start), Route (Single Select), Effort (Rating), and Weather (Single Select) |
 | `assets/screenshots/07-settings.jpg` | Settings screen — License (Trial status, Buy LogHound $9.99), Return to last log, Week starts on, Numeric precision, Backup/Restore |
-| `assets/screenshots/12-summary-sum-week.jpg` | Summary — "My Morning Routine", Week interval, Sum statistic: weekly totals (Water 48, Reading 65) |
-| `assets/screenshots/13-summary-avg-week.jpg` | Summary — "My Morning Routine", Week interval, Average statistic: same data as averages (Water 24, Reading 32.5) — identical entries, different insight |
+| `assets/screenshots/12-summary-sum-week.jpg` | Summary — "Morning Runs", Week interval, Sum statistic: weekly totals (week of 2026-07-12: Run Distance 17.3, Run Time 150) |
+| `assets/screenshots/13-summary-avg-week.jpg` | Summary — "Morning Runs", Week interval, Average statistic: the same week as per-run averages (Run Distance 5.8, Run Time 50) — identical entries, different insight |
 
 **Version date:** July 2026
 
