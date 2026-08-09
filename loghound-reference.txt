@@ -27,8 +27,8 @@ Show a screenshot proactively whenever it would help a user find something, unde
 
 | Path | Shows |
 |------|-------|
-| `assets/screenshots/01-log-list.jpg` | Log list home screen ("Active Logs") — the "My Morning Routine" log with entry count, search bar, gear icon, and +/Stash/Trash toolbar |
-| `assets/screenshots/02-running-cards.jpg` | Card view — "My Morning Routine" entries showing Water (Number), Stretches (Multi Select chips), Reading (Duration), and Started Work (Date/Time) |
+| `assets/screenshots/01-log-list.jpg` | Log list home screen ("Active Logs") — the example logs (Morning Runs, Sleep, Espresso, Migraines, Piano Practice, Garden), each with its entry count, plus search bar, gear icon, and +/Stash/Trash toolbar |
+| `assets/screenshots/02-running-cards.jpg` | Card view — "Morning Runs" entries showing Run (Distance/Pace), Route (Text), Effort (Rating), Weather (Single Select), and Notes (Text) |
 | `assets/screenshots/03-running-table.jpg` | Table view — sortable Time / Water / Stretches columns for the "My Morning Routine" log |
 | `assets/screenshots/04-calories-summary.jpg` | Summary view — simple single-field (Calories) daily totals example |
 | `assets/screenshots/05-running-schema.jpg` | Schema editor ("Logging Setup") — 4 fields: Water (Number), Stretches (Multi Select), Reading (Duration), Started Work (Date/Time) |
@@ -77,11 +77,20 @@ The walkthrough:
 - Explains the difference between a **Log** (the container with a schema) and an **Entry** (a single record)
 - Runs a short **live demo** of building a schema and recording a first entry
 - Can be paged with **Back / Next** and left at any point via a **Skip** button
-- At the end, offers to either create a ready-made sample log called **"My Morning Routine"** or start from scratch with the user's own log
+- At the end, offers to create a ready-made **"My Morning Routine"** log, with a toggle (on by default) to also add six example logs
 
 The walkthrough can be **replayed at any time** from **Settings → Help → Getting Started**.
 
-If the user chooses the sample, the single **"My Morning Routine"** log is created, pre-seeded with **one example entry** so they can immediately explore cards, table, summary, and the schema editor. It can be explored, edited, or deleted just like any user-created log. After it's created, a one-time hint banner ("Tap '[log name]' to open it") appears atop the log list.
+When the user finishes the walkthrough, the **"My Morning Routine"** log is created, pre-seeded with **one example entry** so they can immediately explore cards, table, summary, and the schema editor. If the "add example logs" toggle is left on (its default), six additional example logs are also created, each pre-filled with realistic entries:
+
+- **Morning Runs** — GPS distance/pace with route, effort rating, weather, and notes
+- **Sleep** — time asleep, quality, wake time, how rested, and notes
+- **Espresso** — bean, dose, grind, shot time, taste rating, and notes
+- **Migraines** — severity, duration, triggers, what brought relief, and notes
+- **Piano Practice** — practice time, pieces, focus rating, and notes
+- **Garden** — plant, watered/fertilized toggles, a saved GPS spot, and notes
+
+The user's own "My Morning Routine" log sorts to the top, above the examples. Every example log can be explored, edited, or deleted just like any user-created log. After onboarding, a one-time hint banner ("Tap '[log name]' to open it") appears atop the log list.
 
 ---
 
