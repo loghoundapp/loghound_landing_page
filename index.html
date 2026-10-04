@@ -128,8 +128,14 @@
     <section class="pt-32 pb-20 sm:pt-40 sm:pb-28 px-4">
         <div class="max-w-4xl mx-auto text-center">
             <div class="fade-in">
-                <!-- App Icon -->
-                <img src="assets/AppIcon.png" alt="LogHound app icon" class="mx-auto w-24 h-24 sm:w-28 sm:h-28 rounded-[28%] shadow-2xl shadow-teal-500/20 mb-8">
+                <!-- App Icon — tappable, opens Lucy's bio (mirrors the in-app paywall link) -->
+                <button type="button" onclick="openLucy()" class="group inline-flex flex-col items-center gap-2.5 mb-8" aria-label="Learn about Lucy, the dog behind LogHound">
+                    <img src="assets/AppIcon.png" alt="LogHound app icon" class="w-24 h-24 sm:w-28 sm:h-28 rounded-[28%] shadow-2xl shadow-teal-500/20">
+                    <span class="inline-flex items-center gap-1.5 text-sm text-slate-500 group-hover:text-slate-300 transition-colors">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16.5" rx="5" ry="4.2"/><ellipse cx="5" cy="10.5" rx="2.2" ry="2.8"/><ellipse cx="19" cy="10.5" rx="2.2" ry="2.8"/><ellipse cx="9" cy="5.5" rx="2.2" ry="2.9"/><ellipse cx="15" cy="5.5" rx="2.2" ry="2.9"/></svg>
+                        Learn about Lucy
+                    </span>
+                </button>
 
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
                     Log<span class="text-teal-400">Hound</span>
@@ -144,7 +150,7 @@
                 <div class="flex flex-wrap items-center justify-center gap-2.5 mb-10">
                     <span class="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/25 text-teal-300 text-sm font-medium px-3.5 py-1.5 rounded-full">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 00-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-                        Stays on your device
+                        Private by design
                     </span>
                     <span class="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/25 text-teal-300 text-sm font-medium px-3.5 py-1.5 rounded-full">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
@@ -152,7 +158,7 @@
                     </span>
                     <span class="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/25 text-teal-300 text-sm font-medium px-3.5 py-1.5 rounded-full">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        One-time purchase
+                        One-time purchase — no subscription
                     </span>
                 </div>
 
@@ -678,6 +684,116 @@
         if (e.key === 'ArrowLeft' && carouselSlides.length) carouselPrev();
         if (e.key === 'ArrowRight' && carouselSlides.length) carouselNext();
     });
+    </script>
+
+    <!-- Lucy Modal — same photos and bio as the app's About Lucy sheet (LucyBioView) -->
+    <div id="lucy-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="lucy-title">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeLucy()"></div>
+        <div class="relative bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <button onclick="closeLucy()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors z-10 bg-slate-900/60 rounded-full p-1" aria-label="Close">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <!-- Photo carousel -->
+            <div class="relative bg-slate-900 rounded-t-2xl h-80 sm:h-96 flex items-center justify-center">
+                <img id="lucy-image" src="" alt="" class="max-h-full max-w-full object-contain">
+                <button onclick="lucyPrev()" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center transition-colors" aria-label="Previous photo">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button onclick="lucyNext()" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-800/80 hover:bg-slate-700 flex items-center justify-center transition-colors" aria-label="Next photo">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+            <div id="lucy-dots" class="flex justify-center gap-2 mt-4"></div>
+
+            <div class="p-6 sm:p-8 pt-4 sm:pt-5">
+                <h3 id="lucy-title" class="text-3xl font-bold mb-4">Lucy</h3>
+                <div class="space-y-4 text-slate-400 leading-relaxed">
+                    <p>Meet Lucy, the LogHound mascot. Our beloved whippet was born in Southern California in November, 2012. We picked her up from the breeder just before the arrival of our first human child. Because of this, we often refer to Lucy as “our firstborn.”</p>
+                    <p>Lucy’s arrival brought some adjustments and inconveniences, as new arrivals often do. She had her first round of shots the day we picked her up. They made her so sick that her new (inexperienced) parents wondered if their long-awaited puppy would actually survive the night. Little did we know this was the first of many nights she would keep us up. Her adolescence was filled with days of joyous romping and chewing everything in sight, but the long dark nights were filled with heartbreaking cries and whimpers as she cowered from ghostly puppy-eating monsters, which apparently inhabit southern California condos.</p>
+                    <p>As we adjusted to life as a family, Lucy quickly became the most popular creature in her new household. Although her athletic body (0-30 mph in about 3 seconds) and adorable face garnered ridiculous amounts of attention when out on neighborhood walks, one of her best kept secrets (tightly held to this day) is that a sleek facial profile does not afford the space required for a full-size brain. She does a good job with what she has to work with – she’s actually pretty normal dog intelligence – but this hasn’t prevented the family from bestowing her with nicknames like “our little dumb-dumb,” or “walnut brain.” She’s a good sport about it, but down deep, she feels it’s a bit disrespectful.</p>
+                    <p>Over the years, Lucy has earned her place as a first-class member of our family. Our kids have never known life without her. Now approaching 14 years of age, she doesn’t get out much anymore. Her usual 5 mile walks have been shortened to quarter-mile stints. Her favorite activities are now napping, watching for squirrels and groundhogs in our backyard, listening to the kids practice their musical instruments, and paying careful attention during family reading time.</p>
+                    <p>We know we don’t have much time left with Lucy, and it’s hard to imagine our family without her. We named this app LogHound as a way of always remembering her and the abundance of love and joy she has brought into our lives.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Photos ordered chronologically, puppyhood to present (same order as the app)
+    var lucyPhotos = [];
+    for (var n = 1; n <= 12; n++) lucyPhotos.push('assets/lucy/lucy-' + n + '.jpg');
+    var lucyIndex = 0;
+    var lucyOpen = false;
+
+    function openLucy() {
+        lucyIndex = 0;
+        renderLucy();
+        var modal = document.getElementById('lucy-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        lucyOpen = true;
+    }
+
+    function renderLucy() {
+        var img = document.getElementById('lucy-image');
+        img.src = lucyPhotos[lucyIndex];
+        img.alt = 'Lucy the whippet, photo ' + (lucyIndex + 1) + ' of ' + lucyPhotos.length;
+
+        var dotsEl = document.getElementById('lucy-dots');
+        dotsEl.innerHTML = '';
+        lucyPhotos.forEach(function(_, i) {
+            var dot = document.createElement('button');
+            dot.className = 'w-2 h-2 rounded-full transition-colors ' + (i === lucyIndex ? 'bg-teal-400' : 'bg-slate-600 hover:bg-slate-500');
+            dot.setAttribute('aria-label', 'Photo ' + (i + 1));
+            dot.onclick = function() { lucyIndex = i; renderLucy(); };
+            dotsEl.appendChild(dot);
+        });
+
+        // Warm the next photo so advancing feels instant
+        new Image().src = lucyPhotos[(lucyIndex + 1) % lucyPhotos.length];
+    }
+
+    function lucyPrev() {
+        lucyIndex = (lucyIndex - 1 + lucyPhotos.length) % lucyPhotos.length;
+        renderLucy();
+    }
+
+    function lucyNext() {
+        lucyIndex = (lucyIndex + 1) % lucyPhotos.length;
+        renderLucy();
+    }
+
+    function closeLucy() {
+        var modal = document.getElementById('lucy-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+        lucyOpen = false;
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (!lucyOpen) return;
+        if (e.key === 'Escape') closeLucy();
+        if (e.key === 'ArrowLeft') lucyPrev();
+        if (e.key === 'ArrowRight') lucyNext();
+    });
+
+    // Swipe between photos on touch screens
+    (function() {
+        var startX = null;
+        var area = document.getElementById('lucy-image').parentElement;
+        area.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+        area.addEventListener('touchend', function(e) {
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) { dx < 0 ? lucyNext() : lucyPrev(); }
+            startX = null;
+        });
+    })();
     </script>
 </body>
 </html>
